@@ -6,7 +6,7 @@
 
 Lightweight package shortens given number to a short representation of it. For example **1234** will be formatted to **1k** and **20244023** to **20m**. Package supports multiple languages, the default it's set to English.
 
-### Follow the [full documentation](https://serhiicho.github.io/short-number-docs/) for this package
+### Follow the [full documentation](https://short-number.github.io/) for this package
 
 ## 🚀 Quick Start
 

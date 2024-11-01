@@ -1,5 +1,8 @@
 # Release Notes
 
+## v3.0.9 (2024-11-01)
+- Typo in `README.md` file
+
 ## v3.0.8 (2024-11-01)
 - Update `composer.json` file
 - Move repo to a new organization `short-number/short-number`
