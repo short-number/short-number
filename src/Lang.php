@@ -32,7 +32,7 @@ class Lang
      * @param string $lang ISO 639-1 of the language
      * @param string[]|null $custom_translations
      *
-     * @see https://github.com/SerhiiCho/short-number
+     * @see https://github.com/short-number/short-number
      */
     public static function set(string $lang, ?array $custom_translations = null): void
     {

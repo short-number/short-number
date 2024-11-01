@@ -1,5 +1,9 @@
 # Release Notes
 
+## v3.0.8 (2024-11-01)
+- Update `composer.json` file
+- Move repo to a new organization `short-number/short-number`
+
 ## v3.0.7 (2024-09-08)
 - Remove not working badge from `README.md` file
 - Update composer dev packages to the latest versions

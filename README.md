@@ -1,6 +1,6 @@
 # Short Number
 
-[![Short number](https://github.com/SerhiiCho/short-number/actions/workflows/php.yml/badge.svg)](https://github.com/SerhiiCho/short-number/actions/workflows/php.yml)
+[![Short number](https://github.com/short-number/short-number/actions/workflows/php.yml/badge.svg)](https://github.com/short-number/short-number/actions/workflows/php.yml)
 [![Total Downloads](https://poser.pugx.org/serhii/short-number/downloads)](https://packagist.org/packages/serhii/short-number)
 [![License](https://poser.pugx.org/serhii/short-number/license)](https://packagist.org/packages/serhii/short-number)
 
@@ -16,4 +16,4 @@ composer require serhii/short-number
 
 ## 📄 License
 
-The Short Number project is licensed under the [MIT License](https://github.com/SerhiiCho/short-number/blob/main/LICENSE.md)
+The Short Number project is licensed under the [MIT License](https://github.com/short-number/short-number/blob/main/LICENSE.md)
