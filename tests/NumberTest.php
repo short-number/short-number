@@ -4,11 +4,12 @@ declare(strict_types=1);
 
 namespace Serhii\Tests;
 
+use PHPUnit\Framework\Attributes\DataProvider;
 use Serhii\ShortNumber\Lang;
 use Serhii\ShortNumber\Number;
 use Serhii\ShortNumber\Rule;
 
-class NumberTest extends TestCase
+final class NumberTest extends TestCase
 {
     /**
      * @runInSeparateProcess
@@ -22,20 +23,14 @@ class NumberTest extends TestCase
         $this->assertEquals('1t', Number::conv(Rule::TRILLION));
     }
 
-    /**
-     * @dataProvider provider_for_it_can_convert_negative_numbers
-     *
-     * @param string $expect
-     * @param string $lang
-     * @param int $input
-     */
+    #[DataProvider('providerForItCanConvertNegativeNumbers')]
     public function testItCanConvertNegativeNumbers(string $expect, string $lang, int $input): void
     {
         Lang::set($lang);
         $this->assertEquals($expect, Number::conv($input));
     }
 
-    public function provider_for_it_can_convert_negative_numbers(): array
+    public static function providerForItCanConvertNegativeNumbers(): array
     {
         return [
             ['-1k', 'en', -Rule::THOUSAND],

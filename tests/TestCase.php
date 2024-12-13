@@ -10,10 +10,6 @@ use Serhii\ShortNumber\Rule;
 
 class TestCase extends \PHPUnit\Framework\TestCase
 {
-    /**
-     * @param string $lang Set language
-     * @param array $suffixes
-     */
     public function runTestsForSuffixes(string $lang, array $suffixes): void
     {
         Lang::set($lang);
