@@ -4,15 +4,23 @@
 [![Total Downloads](https://poser.pugx.org/serhii/short-number/downloads)](https://packagist.org/packages/serhii/short-number)
 [![License](https://poser.pugx.org/serhii/short-number/license)](https://packagist.org/packages/serhii/short-number)
 
-Lightweight package shortens given number to a short representation of it. For example **1234** will be formatted to **1k** and **20244023** to **20m**. Package supports multiple languages, the default it's set to English.
+Lightweight package shortens given number to a short representation of it. For example **1234** will be formatted to **1k** and **20244023** to **20m**. Package supports multiple languages and can be easily extended with new languages.
 
 ### Follow the [full documentation](https://short-number.github.io/) for this package
 
-## 🚀 Quick Start
+## Quick Start
 
 ```bash
 composer require serhii/short-number
 ```
+
+## Supported Languages
+| Flag | Language           | Code |
+| ---- | ------------------ | ---- |
+| 🇬🇧   | English            | en   |
+| 🇷🇺   | Russian            | ru   |
+| 🇺🇦   | Ukrainian          | uk   |
+| 🇨🇳   | Chinese            | zh   |
 
 ## 📄 License
 
