@@ -6,15 +6,14 @@ namespace Serhii\ShortNumber;
 
 final class Number
 {
-    /**
-     * @var int $number
-     */
-    private $number;
+    private LangLoader $langLoader;
 
-    /**
-     * @var Number|null $instance
-     */
-    private static $instance;
+    private static self|null $instance = null;
+
+    private function __construct()
+    {
+        $this->langLoader = new LangLoader();
+    }
 
     public static function singleton(): self
     {
@@ -22,61 +21,19 @@ final class Number
     }
 
     /**
-     * Converts given number to its short form.
+     * Converts given number to its short representation form.
      */
     public static function conv(int $number): string
     {
         return self::singleton()->process($number);
     }
 
-    /**
-     * Converts given number to its short form.
-     */
     private function process(int $number): string
     {
-        $this->number = $number;
+        $sets = $this->langLoader->load(__DIR__ . "/../resources/sets.php");
 
-        $number_is_negative = $number < 0;
+        dd($sets);
 
-        if ($number_is_negative) {
-            $this->number = (int) abs($this->number);
-        }
-
-        $rules = $this->createRules();
-
-        $needed_rule = $this->getRuleThatMatchesNumber($rules);
-        $last_rule = $rules[count($rules) - 1];
-
-        $result = !empty($needed_rule)
-            ? current($needed_rule)->formatNumber($this->number)
-            : $last_rule->formatNumber($this->number);
-
-        return $number_is_negative ? "-{$result}" : $result;
-    }
-
-    /**
-     * @return Rule[]
-     */
-    private function createRules(): array
-    {
-        return [
-            new Rule('', [0, 999]),
-            new Rule('thousand', [Rule::THOUSAND, Rule::MILLION - 1]),
-            new Rule('million', [Rule::MILLION, Rule::BILLION - 1]),
-            new Rule('billion', [Rule::BILLION, Rule::TRILLION - 1]),
-            new Rule('trillion', [Rule::TRILLION, Rule::QUADRILLION - 1]),
-        ];
-    }
-
-    /**
-     * @param Rule[] $rules
-     *
-     * @return Rule[]
-     */
-    private function getRuleThatMatchesNumber(array $rules): array
-    {
-        return array_filter($rules, function ($rule) {
-            return $rule->inRange($this->number);
-        });
+        return '';
     }
 }
