@@ -7,10 +7,10 @@ namespace Serhii\ShortNumber;
 final class AbbreviationSet
 {
     /**
-     * @param string|string[]|null $thousand
-     * @param string|string[]|null $million
-     * @param string|string[]|null $billion
-     * @param string|string[]|null $trillion
+     * @param string|list<string>|null $thousand
+     * @param string|list<string>|null $million
+     * @param string|list<string>|null $billion
+     * @param string|list<string>|null $trillion
      * @param array<string,string>|null $rewrites
      */
     public function __construct(

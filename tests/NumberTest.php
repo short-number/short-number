@@ -11,10 +11,6 @@ use Serhii\ShortNumber\Rule;
 
 final class NumberTest extends TestCase
 {
-    /**
-     * @runInSeparateProcess
-     *
-     */
     public function testItDefaultsToEnglishLanguageIfLanguageIsNotSet(): void
     {
         $this->assertEquals('1k', Number::conv(Rule::THOUSAND));

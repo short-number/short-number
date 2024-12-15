@@ -9,7 +9,7 @@ class Lang
     private static string $lang = 'en';
 
     /**
-     * @var string[]|null
+     * @var list<string>|null
      */
     private static array|null $overwrites;
 
@@ -22,7 +22,7 @@ class Lang
      * language will be also English.
      *
      * @param string $lang ISO 639-1 of the language
-     * @param string[]|null $overwrites
+     * @param list<string>|null $overwrites
      *
      * @see https://github.com/short-number/short-number
      */
@@ -30,5 +30,10 @@ class Lang
     {
         self::$lang = $lang;
         self::$overwrites = $overwrites;
+    }
+
+    public static function get(): string
+    {
+        return self::$lang;
     }
 }

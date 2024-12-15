@@ -12,17 +12,15 @@ final class LangLoader
     {
     }
 
-    /**
-     * @return array<string,AbbreviationSet>
-     */
-    public function load(string $path): array
+    public function load(string $lang): AbbreviationSet
     {
-        $sets = require $path;
+        $path = __DIR__ . "/../sets/{$lang}.php";
+        $set = require $path;
 
-        if (!is_array($sets)) {
-            throw new RuntimeException('[Short Number]: Failed to load language sets');
+        if (!$set instanceof AbbreviationSet) {
+            throw new RuntimeException("[Short Number]: Failed to load set from {$path}");
         }
 
-        return $sets;
+        return $set;
     }
 }

@@ -6,6 +6,11 @@ namespace Serhii\ShortNumber;
 
 final class Number
 {
+    /**
+     * @var array<string,AbbreviationSet>
+     */
+    private static array $cache;
+
     private LangLoader $langLoader;
 
     private static self|null $instance = null;
@@ -30,10 +35,22 @@ final class Number
 
     private function process(int $number): string
     {
-        $sets = $this->langLoader->load(__DIR__ . "/../resources/sets.php");
+        $lang = Lang::get();
 
-        dd($sets);
+        $set = match (true) {
+            isset(self::$cache[$lang]) => self::$cache[$lang],
+            default => self::$cache[$lang] = $this->langLoader->load($lang),
+        };
 
+        $shortNumber = $this->shortenNumber($number);
+
+        dd($shortNumber, $set);
+
+        return '';
+    }
+
+    private function shortenNumber(int $number): string
+    {
         return '';
     }
 }
