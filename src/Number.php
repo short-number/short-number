@@ -40,6 +40,11 @@ final class Number
     private function process(int $number): string
     {
         $lang = Lang::get();
+        $isNegative = $number < 0;
+
+        if ($isNegative) {
+            $number = abs($number);
+        }
 
         $set = match (true) {
             isset(self::$cache[$lang]) => self::$cache[$lang],
@@ -48,7 +53,7 @@ final class Number
 
         $shortNumber = (new NumberShortener($number, $set))->shorten();
 
-        if ($number < 0) {
+        if ($isNegative) {
             $shortNumber = '-' . $shortNumber;
         }
 

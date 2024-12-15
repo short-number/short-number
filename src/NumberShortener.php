@@ -8,12 +8,12 @@ use Serhii\ShortNumber\Exceptions\LargeNumberException;
 
 final class NumberShortener
 {
-    public const THOUSAND = 10 ** 3; // 1,000 = 10³
-    public const MILLION = 10 ** 6; // 1,000,000 = 10⁶
-    public const BILLION = 10 ** 9; // 1,000,000,000 = 10⁹
-    public const TRILLION = 10 ** 12; // 1,000,000,000,000 = 10¹²
-    public const QUADRILLION = 10 ** 15; // 1,000,000,000,000,000 = 10¹⁵
-    public const QUINTILLION = 10 ** 18; // 1,000,000,000,000,000,000 = 10¹⁸
+    public const THOUSAND = 10 ** 3; // 1,000
+    public const MILLION = 10 ** 6; // 1,000,000
+    public const BILLION = 10 ** 9; // 1,000,000,000
+    public const TRILLION = 10 ** 12; // 1,000,000,000,000
+    public const QUADRILLION = 10 ** 15; // 1,000,000,000,000,000
+    public const QUINTILLION = 10 ** 18; // 1,000,000,000,000,000,000
 
     public function __construct(
         private readonly int $number,
@@ -24,12 +24,14 @@ final class NumberShortener
     public function shorten(): string
     {
         if ($this->number < self::THOUSAND) {
-            return $this->number . $this->getSuffix();
+            return (string) $this->number;
         }
+
+        $suffix = $this->getSuffix();
 
         $shortNumber = explode(',', number_format((float) $this->number))[0];
 
-        return $shortNumber . $this->getSuffix();
+        return $shortNumber . $suffix;
     }
 
     /**
@@ -37,10 +39,10 @@ final class NumberShortener
      * For example, a thousand must be in range between
      * 1000 (included) and 999,999 (included).
      */
-    public function inRange(int $number): bool
+    public function inRange(int $min): bool
     {
-        [$min, $max] = [1, 100];
-        return $number >= $min && $number <= $max;
+        $max = $min * 1000 - 1;
+        return $this->number >= $min && $this->number <= $max;
     }
 
     /**
@@ -49,7 +51,7 @@ final class NumberShortener
      */
     private function getSuffix(): string
     {
-        return match ($this->number) {
+        return match (true) {
             $this->inRange(self::THOUSAND) => $this->set->thousand,
             $this->inRange(self::MILLION) => $this->set->million,
             $this->inRange(self::BILLION) => $this->set->billion,
