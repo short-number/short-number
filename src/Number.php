@@ -11,13 +11,13 @@ final class Number
      */
     private static array $cache;
 
-    private LangLoader $langLoader;
+    private SetLoader $setLoader;
 
     private static self|null $instance = null;
 
     private function __construct()
     {
-        $this->langLoader = new LangLoader();
+        $this->setLoader = new SetLoader();
     }
 
     public static function singleton(): self
@@ -43,12 +43,12 @@ final class Number
         $isNegative = $number < 0;
 
         if ($isNegative) {
-            $number = abs($number);
+            $number = (int) abs($number);
         }
 
         $set = match (true) {
             isset(self::$cache[$lang]) => self::$cache[$lang],
-            default => self::$cache[$lang] = $this->langLoader->load($lang),
+            default => self::$cache[$lang] = $this->setLoader->load($lang),
         };
 
         $shortNumber = (new NumberShortener($number, $set))->shorten();

@@ -6,7 +6,7 @@ namespace Serhii\ShortNumber;
 
 use RuntimeException;
 
-final class LangLoader
+final class SetLoader
 {
     public function __construct()
     {
