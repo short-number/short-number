@@ -5,11 +5,13 @@ declare(strict_types=1);
 use Serhii\ShortNumber\AbbreviationSet;
 
 return new AbbreviationSet(
-    thousand: ['千', '万', '万'],
-    million: ['万', '万', '亿'],
-    billion: ['亿', '亿', '亿'],
-    trillion: ['兆', '兆', '兆'],
-    quadrillion: ['京', '京', '京'],
+    formula: [
+        4 => '1:千', 5 => '1:万', 6 => '2:万',
+        7 => '3:万', 8 => '4:万', 9 => '1:亿',
+        10 => '2:亿', 11 => '3:亿', 12 => '4:亿',
+        13 => '1:兆', 14 => '2:兆', 15 => '3:兆',
+        16 => '4:兆', 17 => '1:京', 18 => '2:京',
+    ],
     rewrites: [
         '1千' => '千',
         '1万' => '万',
