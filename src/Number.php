@@ -46,21 +46,7 @@ final class Number
             default => self::$cache[$lang] = $this->langLoader->load($lang),
         };
 
-        $shortNumber = $this->shortenNumber($number, $set);
-
-        dd($shortNumber, $set);
-
-        return '';
-    }
-
-    /**
-     * Returns the short representation of the number based on
-     * the given abbreviation set.
-     * For negative numbers, the minus sign is included.
-     */
-    private function shortenNumber(int $number, AbbreviationSet $set): string
-    {
-        $shortNumber = substr((string) $number, 0, 1);
+        $shortNumber = (new NumberShortener($number, $set))->shorten();
 
         if ($number < 0) {
             $shortNumber = '-' . $shortNumber;
