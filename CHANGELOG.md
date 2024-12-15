@@ -5,6 +5,7 @@
     - ⚠️ Deleted `Serhii\ShortNumber\Rule` class
 - Other Changes
     - Added support for Chinese language 🇨🇳
+    - Added support for Japanese language 🇯🇵
     - Rewrite the codebase to make it more extendable
 
 ## v3.0.9 (2024-11-01)
