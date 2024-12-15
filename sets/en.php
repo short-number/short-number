@@ -9,4 +9,5 @@ return new AbbreviationSet(
     million: 'm',
     billion: 'b',
     trillion: 't',
+    quadrillion: 'q',
 );

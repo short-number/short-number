@@ -9,6 +9,7 @@ return new AbbreviationSet(
     million: ['万', '万', '亿'],
     billion: ['亿', '亿', '亿'],
     trillion: ['兆', '兆', '兆'],
+    quadrillion: ['京', '京', '京'],
     rewrites: [
         '1千' => '千',
         '1万' => '万',
