@@ -7,7 +7,7 @@ namespace Serhii\ShortNumber;
 final class AbbreviationSet
 {
     /**
-     * @param array<int,string> $formula
+     * @param array<int,array{int,string}> $formula
      * @param array<string,string>|null $rewrites
      */
     public function __construct(
