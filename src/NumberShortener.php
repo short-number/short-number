@@ -8,10 +8,7 @@ use Serhii\ShortNumber\Exceptions\LargeNumberException;
 
 final class NumberShortener
 {
-    public const THOUSAND = 10 ** 3; // 1,000
-    public const MILLION = 10 ** 6; // 1,000,000
-    public const BILLION = 10 ** 9; // 1,000,000,000
-    public const TRILLION = 10 ** 12; // 1,000,000,000,000
+    public const THOUSAND = 1000;
 
     public function __construct(
         private readonly int $number,
