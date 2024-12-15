@@ -6,7 +6,7 @@ namespace Serhii\Tests;
 
 use Serhii\ShortNumber\Lang;
 use Serhii\ShortNumber\Number;
-use Serhii\ShortNumber\Rule;
+use Serhii\ShortNumber\NumberShortener;
 
 class TestCase extends \PHPUnit\Framework\TestCase
 {
@@ -16,11 +16,11 @@ class TestCase extends \PHPUnit\Framework\TestCase
 
         [$k, $m, $b, $t] = $suffixes;
 
-        $_ = $this->generateDataForProvider(0, Rule::THOUSAND - 1);
-        $K = $this->generateDataForProvider(Rule::THOUSAND, Rule::MILLION - 1);
-        $M = $this->generateDataForProvider(Rule::MILLION, Rule::BILLION - 1);
-        $B = $this->generateDataForProvider(Rule::BILLION, Rule::TRILLION - 1);
-        $T = $this->generateDataForProvider(Rule::TRILLION, Rule::QUADRILLION - 1);
+        $_ = $this->generateDataForProvider(0, NumberShortener::THOUSAND - 1);
+        $K = $this->generateDataForProvider(NumberShortener::THOUSAND, NumberShortener::MILLION - 1);
+        $M = $this->generateDataForProvider(NumberShortener::MILLION, NumberShortener::BILLION - 1);
+        $B = $this->generateDataForProvider(NumberShortener::BILLION, NumberShortener::TRILLION - 1);
+        $T = $this->generateDataForProvider(NumberShortener::TRILLION, NumberShortener::QUADRILLION - 1);
 
         for ($i = 0, $count = count($K); $i < $count; $i++) {
             $this->assertEquals($_[$i]['expect'], Number::conv($inp = $_[$i]['input']), "Failed on test #{$inp}");
@@ -43,7 +43,7 @@ class TestCase extends \PHPUnit\Framework\TestCase
         $subtract = mb_strlen(mb_substr((string) $from, 0, -1));
 
         for ($i = $from; $i < $to; $i += $add) {
-            if ($i >= 0 && $i < Rule::THOUSAND) {
+            if ($i >= 0 && $i < NumberShortener::THOUSAND) {
                 $data[] = ['input' => $i, 'expect' => (string) $i];
             } else {
                 $data[] = [
