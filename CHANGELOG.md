@@ -1,8 +1,11 @@
 # Release Notes
 
-## v4.0.0 (2024-12-14)
-- 🇨🇳 Add support for Chinese language
-- Rewrite the codebase to make it more extendable
+## v4.0.0 (2024-12-15)
+- Breaking Changes
+    - ⚠️ Deleted `Serhii\ShortNumber\Rule` class
+- Other Changes
+    - Added support for Chinese language 🇨🇳
+    - Rewrite the codebase to make it more extendable
 
 ## v3.0.9 (2024-11-01)
 - Typo in `README.md` file
