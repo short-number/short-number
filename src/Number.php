@@ -26,7 +26,11 @@ final class Number
     }
 
     /**
-     * Converts given number to its short representation form.
+     * Converts given number to its short representation form
+     * based on the language.
+     * If the number is negative, the minus sign is included.
+     * For example, for most languages, the number 1721 will be
+     * converted to '1k'. Unless you overwrite the output suffix.
      */
     public static function conv(int $number): string
     {
@@ -42,15 +46,26 @@ final class Number
             default => self::$cache[$lang] = $this->langLoader->load($lang),
         };
 
-        $shortNumber = $this->shortenNumber($number);
+        $shortNumber = $this->shortenNumber($number, $set);
 
         dd($shortNumber, $set);
 
         return '';
     }
 
-    private function shortenNumber(int $number): string
+    /**
+     * Returns the short representation of the number based on
+     * the given abbreviation set.
+     * For negative numbers, the minus sign is included.
+     */
+    private function shortenNumber(int $number, AbbreviationSet $set): string
     {
-        return '';
+        $shortNumber = substr((string) $number, 0, 1);
+
+        if ($number < 0) {
+            $shortNumber = '-' . $shortNumber;
+        }
+
+        return $shortNumber;
     }
 }
