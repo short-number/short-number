@@ -18,6 +18,12 @@ final class NumberTest extends TestCase
     public static function providerForNumbers(): array
     {
         $testCases = [
+            ['0', 0],
+            ['1', 1],
+            ['500', 500],
+            ['999', 999],
+            ['1k', 1000],
+            ['1k', 1001],
             ['1k', 1234],
             ['4k', 4367],
             ['5m', 5_935_235],
@@ -25,6 +31,8 @@ final class NumberTest extends TestCase
             ['3b', 3_456_789_012],
             ['25b', 25_256_365_947],
             ['91t', 91_345_678_912_345],
+            ['999t', 999_999_999_999_999],
+            ['1q', 1_000_000_000_000_000],
             ['4q', 4_091_345_678_912_345],
             ['13t', 13_000_000_000_000],
             ['21t', 21_256_365_947_295],
@@ -41,6 +49,11 @@ final class NumberTest extends TestCase
     {
         foreach ($testCases as $testCase) {
             [$expect, $num] = $testCase;
+
+            if ($num === 0) {
+                continue;
+            }
+
             $testCases[] = ["-{$expect}", -$num];
         }
 
