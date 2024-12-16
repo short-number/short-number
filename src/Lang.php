@@ -36,4 +36,12 @@ class Lang
     {
         return self::$lang;
     }
+
+    /**
+     * @param array<string,string> $overwrites
+     */
+    public static function setOverwrites(array $overwrites): void
+    {
+        self::$overwrites = $overwrites;
+    }
 }
