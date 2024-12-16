@@ -13,7 +13,7 @@ final class NumberTest extends TestCase
     #[DataProvider('providerForNumbers')]
     public function testNumber(string $expect, int $num): void
     {
-        $this->assertSame($expect, Number::conv($num));
+        $this->assertSame($expect, Number::short($num));
     }
 
     public static function providerForNumbers(): array
@@ -64,6 +64,18 @@ final class NumberTest extends TestCase
     public function testLargeNumberExceptionIsThrown(): void
     {
         $this->expectException(LargeNumberException::class);
-        Number::conv(1_000_000_000_000_000_000);
+        Number::short(1_000_000_000_000_000_000);
+    }
+
+    public function testOverwrites(string $expect): void
+    {
+
+    }
+
+    private static function providerForOverwrites(): array
+    {
+        return [
+            ['1kilo'],
+        ];
     }
 }

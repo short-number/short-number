@@ -32,14 +32,14 @@ final class Number
      * For example, for most languages, the number 1721 will be
      * converted to '1k'. Unless you overwrite the output suffix.
      */
-    public static function conv(int $number): string
+    public static function short(int $number): string
     {
         return self::singleton()->process($number);
     }
 
     private function process(int $number): string
     {
-        $lang = Lang::get();
+        $lang = Lang::current();
         $isNegative = $number < 0;
 
         if ($isNegative) {

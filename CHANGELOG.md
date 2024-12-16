@@ -1,8 +1,11 @@
 # Release Notes
 
-## v4.0.0 (2024-12-15)
+## v4.0.0 (2024-12-16)
+> [Upgrade from 3.x to 4.x Guide](https://short-number.github.io/4.x/upgrade.html)
 - Breaking Changes
     - ⚠️ Deleted `Serhii\ShortNumber\Rule` class
+    - ⚠️ Rename `conv` method to `short`
+    - ⚠️ Changed the way you overwrite translations with `Lang::set()` method
 - Other Changes
     - Added support for Chinese language 🇨🇳
     - Added support for Japanese language 🇯🇵
