@@ -32,7 +32,7 @@ class Lang
         self::$overwrites = $overwrites;
     }
 
-    public static function get(): string
+    public static function current(): string
     {
         return self::$lang;
     }
