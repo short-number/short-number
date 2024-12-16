@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Serhii\Tests;
 
 use PHPUnit\Framework\Attributes\DataProvider;
+use Serhii\ShortNumber\Exceptions\LargeNumberException;
 use Serhii\ShortNumber\Number;
 
 final class NumberTest extends TestCase
@@ -58,5 +59,11 @@ final class NumberTest extends TestCase
         }
 
         return $testCases;
+    }
+
+    public function testLargeNumberExceptionIsThrown(): void
+    {
+        $this->expectException(LargeNumberException::class);
+        Number::conv(1_000_000_000_000_000_000);
     }
 }
