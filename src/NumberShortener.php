@@ -36,8 +36,26 @@ final class NumberShortener
 
         [$grabDigits, $suffix] = $formulaItem;
 
+        $overwrites = Lang::getLangOverwrites();
+
+        if (!empty($overwrites)) {
+            $suffix = $this->overwritesSuffix($suffix, $overwrites);
+        }
+
         $shortNumber = substr($inputNumber, 0, $grabDigits);
 
         return $shortNumber . $suffix;
+    }
+
+    /**
+     * @param non-empty-array<string,string> $overwrites
+     */
+    private function overwritesSuffix(string $suffix, array $overwrites): string
+    {
+        foreach ($overwrites as $key => $value) {
+            $suffix = str_replace($key, $value, $suffix);
+        }
+
+        return $suffix;
     }
 }

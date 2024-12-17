@@ -69,8 +69,8 @@ class Lang
     /**
      * @return array<string,string>|null
      */
-    public static function getLangOverwrites(string $lang): array|null
+    public static function getLangOverwrites(): array|null
     {
-        return self::$overwrites[$lang] ?? null;
+        return self::$overwrites[self::$lang] ?? null;
     }
 }

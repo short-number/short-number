@@ -57,10 +57,8 @@ final class Number
             $result = '-' . $result;
         }
 
-        $overwrites = Lang::getLangOverwrites($lang);
-
-        if (!empty($overwrites)) {
-            return $this->overwriteOutput($result, $overwrites);
+        if (!empty($set->overwrites)) {
+            $result = $this->applyDefaultOverwrites($result, $set->overwrites);
         }
 
         return $result;
@@ -69,10 +67,12 @@ final class Number
     /**
      * @param non-empty-array<string,string> $overwrites
      */
-    private function overwriteOutput(string $result, array $overwrites): string
+    private function applyDefaultOverwrites(string $result, array $overwrites): string
     {
-        foreach ($overwrites as $key => $value) {
-            $result = str_replace($key, $value, $result);
+        foreach ($overwrites as $key => $overwrite) {
+            if ($key === $result) {
+                return $overwrite;
+            }
         }
 
         return $result;
