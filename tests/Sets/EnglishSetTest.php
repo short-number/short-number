@@ -10,14 +10,14 @@ use Serhii\ShortNumber\Number;
 
 final class EnglishSetTest extends TestCase
 {
-    #[DataProvider('provideEnglishSet')]
-    public function testEnglishSet(string $expect, int $number): void
+    #[DataProvider('provideLanguageSet')]
+    public function testLanguageSet(string $expect, int $number): void
     {
         Lang::set('en');
         $this->assertSame($expect, Number::short($number));
     }
 
-    public static function provideEnglishSet(): array
+    public static function provideLanguageSet(): array
     {
         return [
             ['999', 999],
