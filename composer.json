@@ -37,7 +37,7 @@
     "prefer-stable": true,
     "scripts": {
         "stan": "phpstan analyse",
-        "cs": "phpcs src resources --colors -p",
+        "cs": "phpcs src sets --colors -p",
         "test": "phpunit --colors",
         "pint": "pint --test",
         "check": [
