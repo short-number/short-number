@@ -39,7 +39,7 @@ class Lang
     /**
      * Set the language and overwrites to the default values.
      */
-    public static function setToDefaults(): void
+    public static function resetToDefaults(): void
     {
         self::$lang = self::DEFAULT_LANG;
         self::$overwrites = self::DEFAULT_OVERWRITES;

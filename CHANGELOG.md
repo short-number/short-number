@@ -10,7 +10,7 @@
     - Added support for Chinese language 🇨🇳
     - Added support for Japanese language 🇯🇵
     - Rewrite the codebase to make it more extendable
-    - Added `setToDefaults` method to `Lang` class to reset overwrites and the language to default
+    - Added `resetToDefaults` method to `Lang` class to reset overwrites and the language to default
     - Added `current` method to `Lang` class to get the current language
     - Added `getOverwrites` and `setOverwrites` methods to `Lang` class to get and set overwrites
     - Increased number limit to quadrillions. This is the highest number supported now `999,999,999,999,999,999`
