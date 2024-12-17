@@ -12,9 +12,9 @@ class Lang
     private static string $lang = 'en';
 
     /**
-     * @var array<string,string>|null
+     * @var array<string,array<string,string>>
      */
-    private static array|null $overwrites;
+    private static array $overwrites = [];
 
     /**
      * Set the language by passing language short name
@@ -27,7 +27,10 @@ class Lang
     public static function set(string $lang, array|null $overwrites = null): void
     {
         self::$lang = $lang;
-        self::$overwrites = $overwrites;
+
+        if ($overwrites) {
+            self::$overwrites[$lang] = $overwrites;
+        }
     }
 
     public static function current(): string
@@ -36,10 +39,26 @@ class Lang
     }
 
     /**
-     * @param array<string,string> $overwrites
+     * @param array<string,array<string,string>> $overwrites
      */
     public static function setOverwrites(array $overwrites): void
     {
         self::$overwrites = $overwrites;
+    }
+
+    /**
+     * @return array<string,array<string,string>>|null
+     */
+    public static function getOverwrites(): array|null
+    {
+        return self::$overwrites;
+    }
+
+    /**
+     * @return array<string,string>|null
+     */
+    public static function getLangOverwrites(string $lang): array|null
+    {
+        return self::$overwrites[$lang] ?? null;
     }
 }

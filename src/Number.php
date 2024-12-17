@@ -51,12 +51,30 @@ final class Number
             default => self::$cache[$lang] = $this->setLoader->load($lang),
         };
 
-        $shortNumber = (new NumberShortener($number, $set))->shorten();
+        $result = (new NumberShortener($number, $set))->shorten();
 
         if ($isNegative) {
-            $shortNumber = '-' . $shortNumber;
+            $result = '-' . $result;
         }
 
-        return $shortNumber;
+        $overwrites = Lang::getLangOverwrites($lang);
+
+        if (!empty($overwrites)) {
+            return $this->overwriteOutput($result, $overwrites);
+        }
+
+        return $result;
+    }
+
+    /**
+     * @param non-empty-array<string,string> $overwrites
+     */
+    private function overwriteOutput(string $result, array $overwrites): string
+    {
+        foreach ($overwrites as $key => $value) {
+            $result = str_replace($key, $value, $result);
+        }
+
+        return $result;
     }
 }
