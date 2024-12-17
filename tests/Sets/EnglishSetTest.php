@@ -20,6 +20,7 @@ final class EnglishSetTest extends TestCase
     public static function provideLanguageSet(): array
     {
         return [
+            ['0', 0],
             ['999', 999],
             ['1k', 1_000],
             ['2k', 2_000],

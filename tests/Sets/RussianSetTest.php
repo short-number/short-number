@@ -20,6 +20,7 @@ final class RussianSetTest extends TestCase
     public static function provideLanguageSet(): array
     {
         return [
+            ['0', 0],
             ['999', 999],
             ['1тыс', 1_000],
             ['2тыс', 2_000],
