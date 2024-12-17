@@ -4,77 +4,52 @@ declare(strict_types=1);
 
 namespace Serhii\Tests;
 
+use PHPUnit\Framework\Attributes\DataProvider;
 use Serhii\ShortNumber\Lang;
+use Serhii\ShortNumber\Number;
 
-class LangTest extends TestCase
+final class LangTest extends TestCase
 {
-    public function testMethodTransReturnsTranslationsIfCustomTranslationsAreNotProvided(): void
+    #[DataProvider('provideCurrentLanguageOverwrites')]
+    public function testCurrentLanguageOverwrites(string $expect, int $number, array $overwrites): void
     {
-        Lang::set('ru');
-
-        $this->assertSame('тыс', Lang::trans('thousand'));
-        $this->assertSame('млн', Lang::trans('million'));
-        $this->assertSame('млд', Lang::trans('billion'));
-        $this->assertSame('трн', Lang::trans('trillion'));
+        Lang::set('en', overwrites: $overwrites);
+        $this->assertSame($expect, Number::short($number));
     }
 
-
-    public function testMethodTransCanOverwrite1Field(): void
+    public static function provideCurrentLanguageOverwrites(): array
     {
-        Lang::set('en', ['thousand' => 'thou']);
-
-        $this->assertSame('thou', Lang::trans('thousand'));
-        $this->assertSame('m', Lang::trans('million'));
-        $this->assertSame('b', Lang::trans('billion'));
-        $this->assertSame('t', Lang::trans('trillion'));
+        return [
+            ['1kilo', 1000, ['k' => 'kilo']],
+            ['33k', 33000, ['k' => 'k']],
+            ['123 kilo', 123456, ['k' => ' kilo']],
+            ['-1kilo', -1123, ['k' => 'kilo']],
+            ['-33k', -33193, ['k' => 'k']],
+            ['-123 kilo', -123654, ['k' => ' kilo']],
+        ];
     }
 
-
-    public function testMethodTransCanOverwrite2Fields(): void
+    #[DataProvider('provideSetOverwrites')]
+    public function testSetOverwrites(string $expect, int $number, string $lang, array $overwrites): void
     {
-        Lang::set('en', ['thousand' => 'th', 'million' => 'mi']);
-
-        $this->assertSame('th', Lang::trans('thousand'));
-        $this->assertSame('mi', Lang::trans('million'));
-        $this->assertSame('b', Lang::trans('billion'));
-        $this->assertSame('t', Lang::trans('trillion'));
+        Lang::set($lang);
+        Lang::setOverwrites($overwrites);
+        $this->assertSame($expect, Number::short($number));
     }
 
-
-    public function testMethodTransCanOverwrite3Fields(): void
+    public static function provideSetOverwrites(): array
     {
-        Lang::set('en', ['thousand' => 'th', 'million' => 'mi', 'billion' => 'bi']);
-
-        $this->assertSame('th', Lang::trans('thousand'));
-        $this->assertSame('mi', Lang::trans('million'));
-        $this->assertSame('bi', Lang::trans('billion'));
-        $this->assertSame('t', Lang::trans('trillion'));
-    }
-
-
-    public function testMethodTransCanOverwrite4Fields(): void
-    {
-        Lang::set('en', ['thousand' => 'th', 'million' => 'mi', 'billion' => 'bi', 'trillion' => 'tr']);
-
-        $this->assertSame('th', Lang::trans('thousand'));
-        $this->assertSame('mi', Lang::trans('million'));
-        $this->assertSame('bi', Lang::trans('billion'));
-        $this->assertSame('tr', Lang::trans('trillion'));
-    }
-
-
-    public function testMethodTransReturnsCustomTranslationsIfTheyProvidedForNoneExistingLanguage(): void
-    {
-        Lang::set('xx', [
-            'thousand' => 'x1',
-            'million' => 'x2',
-            'billion' => 'x3',
-            'trillion' => 'x4',
-        ]);
-
-        $this->assertSame('x1', Lang::trans('thousand'));
-        $this->assertSame('x2', Lang::trans('million'));
-        $this->assertSame('x3', Lang::trans('billion'));
-        $this->assertSame('x4', Lang::trans('trillion'));
+        return [
+            ['1kilo', 1000, 'en', ['en' => ['k' => 'kilo']]],
+            ['2тыс', 2000, 'ru', ['en' => ['k' => '']]],
+            ['11т', 11000, 'ru', ['en' => ['k' => 'k'], 'ru' => ['тыс' => 'т']]],
+            ['10 тысяч', 10000, 'ru', ['ru' => ['тыс' => ' тысяч']]],
+            ['9', 9000, 'ru', ['ru' => ['тыс' => '']]],
+            ['-1kilo', -1000, 'en', ['en' => ['k' => 'kilo']]],
+            ['-2тыс', -2999, 'ru', ['en' => ['k' => '']]],
+            ['-11т', -11111, 'ru', ['en' => ['k' => 'k'], 'ru' => ['тыс' => 'т']]],
+            ['-10 тысяч', -10923, 'ru', ['ru' => ['тыс' => ' тысяч']]],
+            ['-9', -9923, 'ru', ['ru' => ['тыс' => '']]],
+        ];
     }
 }

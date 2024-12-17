@@ -4,48 +4,47 @@ declare(strict_types=1);
 
 namespace Serhii\Tests;
 
-use Serhii\ShortNumber\Lang;
+use PHPUnit\Framework\Attributes\DataProvider;
+use Serhii\ShortNumber\Exceptions\LargeNumberException;
 use Serhii\ShortNumber\Number;
-use Serhii\ShortNumber\Rule;
 
-class NumberTest extends TestCase
+final class NumberTest extends TestCase
 {
-    /**
-     * @runInSeparateProcess
-     *
-     */
-    public function testItDefaultsToEnglishLanguageIfLanguageIsNotSet(): void
+    #[DataProvider('provideNumberShort')]
+    public function testNumberShort(string $expect, int $num): void
     {
-        $this->assertEquals('1k', Number::conv(Rule::THOUSAND));
-        $this->assertEquals('1m', Number::conv(Rule::MILLION));
-        $this->assertEquals('1b', Number::conv(Rule::BILLION));
-        $this->assertEquals('1t', Number::conv(Rule::TRILLION));
+        $this->assertSame($expect, Number::short($num));
     }
 
-    /**
-     * @dataProvider provider_for_it_can_convert_negative_numbers
-     *
-     * @param string $expect
-     * @param string $lang
-     * @param int $input
-     */
-    public function testItCanConvertNegativeNumbers(string $expect, string $lang, int $input): void
+    public static function provideNumberShort(): array
     {
-        Lang::set($lang);
-        $this->assertEquals($expect, Number::conv($input));
+        return self::withNegativeNumbers([
+            ['0', 0],
+            ['1', 1],
+            ['500', 500],
+            ['999', 999],
+            ['1k', 1000],
+            ['1k', 1001],
+            ['1k', 1234],
+            ['4k', 4367],
+            ['5m', 5_935_235],
+            ['81m', 81_235_678],
+            ['3b', 3_456_789_012],
+            ['25b', 25_256_365_947],
+            ['91t', 91_345_678_912_345],
+            ['999t', 999_999_999_999_999],
+            ['13t', 13_000_000_000_000],
+            ['21t', 21_256_365_947_295],
+            ['1q', 1_000_000_000_000_000],
+            ['4q', 4_091_345_678_912_345],
+            ['10q', 10_000_000_000_000_000],
+            ['999q', 999_999_999_999_999_999],
+        ]);
     }
 
-    public function provider_for_it_can_convert_negative_numbers(): array
+    public function testLargeNumberExceptionIsThrown(): void
     {
-        return [
-            ['-1k', 'en', -Rule::THOUSAND],
-            ['-1m', 'en', -Rule::MILLION],
-            ['-1b', 'en', -Rule::BILLION],
-            ['-1t', 'en', -Rule::TRILLION],
-            ['-1тыс', 'ru', -Rule::THOUSAND],
-            ['-1млн', 'ru', -Rule::MILLION],
-            ['-1млд', 'ru', -Rule::BILLION],
-            ['-1трн', 'ru', -Rule::TRILLION],
-        ];
+        $this->expectException(LargeNumberException::class);
+        Number::short(1_000_000_000_000_000_000);
     }
 }

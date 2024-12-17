@@ -4,78 +4,73 @@ declare(strict_types=1);
 
 namespace Serhii\ShortNumber;
 
+/**
+ * @see https://github.com/short-number/short-number
+ */
 class Lang
 {
-    /**
-     * @var string
-     */
-    public static $lang = 'en';
+    public const DEFAULT_LANG = 'en';
+    public const DEFAULT_OVERWRITES = [];
+
+    private static string $lang = self::DEFAULT_LANG;
 
     /**
-     * @var array<string, array<string>>|null
+     * @var array<string,array<string,string>>
      */
-    private static $translations;
-
-    /**
-     * @var string[]|null
-     */
-    private static $custom_translations;
+    private static array $overwrites = self::DEFAULT_OVERWRITES;
 
     /**
      * Set the language by passing language short name
      * like 'en' or 'ru' as the argument.
-     * If given language is not supported by this package,
-     * its language will be set to English by default.
-     * If you don't call this method, the default
-     * language will be also English.
+     * Default is English.
      *
      * @param string $lang ISO 639-1 of the language
-     * @param string[]|null $custom_translations
-     *
-     * @see https://github.com/short-number/short-number
+     * @param array<string,string>|null $overwrites
      */
-    public static function set(string $lang, ?array $custom_translations = null): void
+    public static function set(string $lang, array|null $overwrites = null): void
     {
-        self::includeTranslations();
-        self::$lang = in_array($lang, self::availableLanguages(), true) ? $lang : 'en';
-        self::$custom_translations = $custom_translations;
+        self::$lang = $lang;
+
+        if ($overwrites) {
+            self::$overwrites[$lang] = $overwrites;
+        }
     }
 
     /**
-     * Returns array of languages that are currently in lang directory
-     *
-     * @return string[]
+     * Set the language and overwrites to the default values.
      */
-    private static function availableLanguages(): array
+    public static function resetToDefaults(): void
     {
-        return self::$translations ? array_keys(self::$translations) : [];
+        self::$lang = self::DEFAULT_LANG;
+        self::$overwrites = self::DEFAULT_OVERWRITES;
+    }
+
+    public static function current(): string
+    {
+        return self::$lang;
     }
 
     /**
-     * @param string $index The key name of the translation
-     * @return string Needed translation for current language,
-     * if translation not found returns empty string
+     * @param array<string,array<string,string>> $overwrites
      */
-    public static function trans(string $index): string
+    public static function setOverwrites(array $overwrites): void
     {
-        if (!self::$translations) {
-            self::includeTranslations();
-        }
-
-        /** @phpstan-ignore-next-line */
-        $lang = self::$translations[self::$lang];
-
-        if (self::$custom_translations) {
-            $lang = array_merge($lang, self::$custom_translations);
-        }
-
-        return $lang[$index] ?? '';
+        self::$overwrites = $overwrites;
     }
 
-    public static function includeTranslations(): void
+    /**
+     * @return array<string,array<string,string>>|null
+     */
+    public static function getOverwrites(): array|null
     {
-        if (!self::$translations) {
-            self::$translations = require __DIR__ . '/../resources/translations.php';
-        }
+        return self::$overwrites;
+    }
+
+    /**
+     * @return array<string,string>|null
+     */
+    public static function getLangOverwrites(): array|null
+    {
+        return self::$overwrites[self::$lang] ?? null;
     }
 }

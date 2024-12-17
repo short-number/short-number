@@ -7,14 +7,18 @@ namespace Serhii\ShortNumber;
 final class Number
 {
     /**
-     * @var int $number
+     * @var array<string,AbbreviationSet>
      */
-    private $number;
+    private static array $cache;
 
-    /**
-     * @var Number|null $instance
-     */
-    private static $instance;
+    private SetLoader $setLoader;
+
+    private static self|null $instance = null;
+
+    private function __construct()
+    {
+        $this->setLoader = new SetLoader();
+    }
 
     public static function singleton(): self
     {
@@ -22,61 +26,55 @@ final class Number
     }
 
     /**
-     * Converts given number to its short form.
+     * Converts given number to its short representation form
+     * based on the language.
+     * If the number is negative, the minus sign is included.
+     * For example, for most languages, the number 1721 will be
+     * converted to '1k'. Unless you overwrite the output suffix.
      */
-    public static function conv(int $number): string
+    public static function short(int $number): string
     {
         return self::singleton()->process($number);
     }
 
-    /**
-     * Converts given number to its short form.
-     */
     private function process(int $number): string
     {
-        $this->number = $number;
+        $lang = Lang::current();
+        $isNegative = $number < 0;
 
-        $number_is_negative = $number < 0;
-
-        if ($number_is_negative) {
-            $this->number = (int) abs($this->number);
+        if ($isNegative) {
+            $number = (int) abs($number);
         }
 
-        $rules = $this->createRules();
+        $set = match (true) {
+            isset(self::$cache[$lang]) => self::$cache[$lang],
+            default => self::$cache[$lang] = $this->setLoader->load($lang),
+        };
 
-        $needed_rule = $this->getRuleThatMatchesNumber($rules);
-        $last_rule = $rules[count($rules) - 1];
+        $result = (new NumberShortener($number, $set))->shorten();
 
-        $result = !empty($needed_rule)
-            ? current($needed_rule)->formatNumber($this->number)
-            : $last_rule->formatNumber($this->number);
+        if ($isNegative) {
+            $result = '-' . $result;
+        }
 
-        return $number_is_negative ? "-{$result}" : $result;
+        if (!empty($set->overwrites)) {
+            $result = $this->applyDefaultOverwrites($result, $set->overwrites);
+        }
+
+        return $result;
     }
 
     /**
-     * @return Rule[]
+     * @param non-empty-array<string,string> $overwrites
      */
-    private function createRules(): array
+    private function applyDefaultOverwrites(string $result, array $overwrites): string
     {
-        return [
-            new Rule('', [0, 999]),
-            new Rule('thousand', [Rule::THOUSAND, Rule::MILLION - 1]),
-            new Rule('million', [Rule::MILLION, Rule::BILLION - 1]),
-            new Rule('billion', [Rule::BILLION, Rule::TRILLION - 1]),
-            new Rule('trillion', [Rule::TRILLION, Rule::QUADRILLION - 1]),
-        ];
-    }
+        foreach ($overwrites as $key => $overwrite) {
+            if ($key === $result) {
+                return $overwrite;
+            }
+        }
 
-    /**
-     * @param Rule[] $rules
-     *
-     * @return Rule[]
-     */
-    private function getRuleThatMatchesNumber(array $rules): array
-    {
-        return array_filter($rules, function ($rule) {
-            return $rule->inRange($this->number);
-        });
+        return $result;
     }
 }

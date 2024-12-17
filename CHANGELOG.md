@@ -1,5 +1,20 @@
 # Release Notes
 
+## v4.0.0 (2024-12-17)
+> [Upgrade from 3.x to 4.x Guide](https://short-number.github.io/4.x/upgrade.html)
+- Breaking Changes
+    - ⚠️ Deleted `Serhii\ShortNumber\Rule` class
+    - ⚠️ Rename `conv` method to `short`
+    - ⚠️ Changed the way you overwrite translations with `Lang::set()` method
+- Other Changes
+    - Added support for Chinese language 🇨🇳
+    - Added support for Japanese language 🇯🇵
+    - Rewrite the codebase to make it more extendable
+    - Added `resetToDefaults` method to `Lang` class to reset overwrites and the language to default
+    - Added `current` method to `Lang` class to get the current language
+    - Added `getOverwrites` and `setOverwrites` methods to `Lang` class to get and set overwrites
+    - Increased number limit to quadrillions. This is the highest number supported now `999,999,999,999,999,999`
+
 ## v3.0.9 (2024-11-01)
 - Typo in `README.md` file
 
