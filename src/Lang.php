@@ -9,12 +9,15 @@ namespace Serhii\ShortNumber;
  */
 class Lang
 {
-    private static string $lang = 'en';
+    public const DEFAULT_LANG = 'en';
+    public const DEFAULT_OVERWRITES = [];
+
+    private static string $lang = self::DEFAULT_LANG;
 
     /**
      * @var array<string,array<string,string>>
      */
-    private static array $overwrites = [];
+    private static array $overwrites = self::DEFAULT_OVERWRITES;
 
     /**
      * Set the language by passing language short name
@@ -31,6 +34,15 @@ class Lang
         if ($overwrites) {
             self::$overwrites[$lang] = $overwrites;
         }
+    }
+
+    /**
+     * Set the language and overwrites to the default values.
+     */
+    public static function setToDefaults(): void
+    {
+        self::$lang = self::DEFAULT_LANG;
+        self::$overwrites = self::DEFAULT_OVERWRITES;
     }
 
     public static function current(): string
