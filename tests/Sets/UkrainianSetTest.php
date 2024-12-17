@@ -19,7 +19,7 @@ final class UkrainianSetTest extends TestCase
 
     public static function provideLanguageSet(): array
     {
-        return [
+        return self::withNegativeNumbers([
             ['0', 0],
             ['999', 999],
             ['1тис', 1_000],
@@ -44,6 +44,6 @@ final class UkrainianSetTest extends TestCase
             ['333квадр', 333_154_839_342_539_299],
             ['999квадр', 999_054_239_942_239_191],
             ['999квадр', 999_999_999_999_999_999],
-        ];
+        ]);
     }
 }

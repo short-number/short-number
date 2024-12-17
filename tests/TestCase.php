@@ -13,4 +13,23 @@ class TestCase extends \PHPUnit\Framework\TestCase
         parent::setUp();
         Lang::setToDefaults();
     }
+
+    /**
+     * @param list<array{string,string,int}> $testCases
+     * @return list<array{string,string,int}>
+     */
+    protected static function withNegativeNumbers(array $testCases, string|null $format = '-%s'): array
+    {
+        foreach ($testCases as $testCase) {
+            [$expect, $num] = $testCase;
+
+            if ($num === 0) {
+                continue;
+            }
+
+            $testCases[] = [sprintf($format, $expect), -$num];
+        }
+
+        return $testCases;
+    }
 }

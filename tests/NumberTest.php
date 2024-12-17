@@ -18,7 +18,7 @@ final class NumberTest extends TestCase
 
     public static function provideNumberShort(): array
     {
-        $testCases = [
+        return self::withNegativeNumbers([
             ['0', 0],
             ['1', 1],
             ['500', 500],
@@ -39,28 +39,7 @@ final class NumberTest extends TestCase
             ['4q', 4_091_345_678_912_345],
             ['10q', 10_000_000_000_000_000],
             ['999q', 999_999_999_999_999_999],
-        ];
-
-        return self::addNegativeNumbers($testCases);
-    }
-
-    /**
-     * @param list<array{string,string,int}> $testCases
-     * @return list<array{string,string,int}>
-     */
-    private static function addNegativeNumbers(array $testCases): array
-    {
-        foreach ($testCases as $testCase) {
-            [$expect, $num] = $testCase;
-
-            if ($num === 0) {
-                continue;
-            }
-
-            $testCases[] = ["-{$expect}", -$num];
-        }
-
-        return $testCases;
+        ]);
     }
 
     public function testLargeNumberExceptionIsThrown(): void

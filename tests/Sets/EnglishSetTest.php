@@ -19,7 +19,7 @@ final class EnglishSetTest extends TestCase
 
     public static function provideLanguageSet(): array
     {
-        return [
+        return self::withNegativeNumbers([
             ['0', 0],
             ['999', 999],
             ['1k', 1_000],
@@ -44,6 +44,6 @@ final class EnglishSetTest extends TestCase
             ['333q', 333_154_839_342_539_299],
             ['999q', 999_054_239_942_239_191],
             ['999q', 999_999_999_999_999_999],
-        ];
+        ]);
     }
 }

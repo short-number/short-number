@@ -19,7 +19,7 @@ final class ChineseSetTest extends TestCase
 
     public static function provideLanguageSet(): array
     {
-        return [
+        return self::withNegativeNumbers([
             ['0', 0],
             ['999', 999],
             ['千', 1000],
@@ -51,6 +51,6 @@ final class ChineseSetTest extends TestCase
             ['33京', 33_3154_8393_4253_9299],
             ['99京', 99_9054_2399_4223_9191],
             ['99京', 99_9999_9999_9999_9999],
-        ];
+        ]);
     }
 }
