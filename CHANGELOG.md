@@ -1,5 +1,8 @@
 # Release Notes
 
+## v3.1.0 (2024-12-17)
+- Add support for PHP 8.4
+
 ## v3.0.9 (2024-11-01)
 - Typo in `README.md` file
 
