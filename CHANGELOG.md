@@ -6,6 +6,7 @@
     - ⚠️ Deleted `Serhii\ShortNumber\Rule` class
     - ⚠️ Rename `conv` method to `short`
     - ⚠️ Changed the way you overwrite translations with `Lang::set()` method
+    - ⚠️ Changed the way you define overwrites in `Lang::set` method
 - Other Changes
     - Added support for Chinese language 🇨🇳
     - Added support for Japanese language 🇯🇵
