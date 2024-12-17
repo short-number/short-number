@@ -10,9 +10,6 @@ use Serhii\ShortNumber\Number;
 
 final class LangTest extends TestCase
 {
-    /**
-     * @param array<string,string> $overwrites
-     */
     #[DataProvider('provideCurrentLanguageOverwrites')]
     public function testCurrentLanguageOverwrites(string $expect, int $number, array $overwrites): void
     {
