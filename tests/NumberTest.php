@@ -10,13 +10,13 @@ use Serhii\ShortNumber\Number;
 
 final class NumberTest extends TestCase
 {
-    #[DataProvider('providerForNumbers')]
-    public function testNumber(string $expect, int $num): void
+    #[DataProvider('provideNumberShort')]
+    public function testNumberShort(string $expect, int $num): void
     {
         $this->assertSame($expect, Number::short($num));
     }
 
-    public static function providerForNumbers(): array
+    public static function provideNumberShort(): array
     {
         $testCases = [
             ['0', 0],
