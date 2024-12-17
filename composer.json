@@ -43,8 +43,8 @@
         "check": [
             "@cs",
             "@stan",
-            "@test",
-            "@pint"
+            "@pint",
+            "@test"
         ]
     }
 }
