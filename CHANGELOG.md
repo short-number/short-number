@@ -1,6 +1,6 @@
 # Release Notes
 
-## v4.0.0 (2024-12-16)
+## v4.0.0 (2024-12-17)
 > [Upgrade from 3.x to 4.x Guide](https://short-number.github.io/4.x/upgrade.html)
 - Breaking Changes
     - ⚠️ Deleted `Serhii\ShortNumber\Rule` class
