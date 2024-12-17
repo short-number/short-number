@@ -23,6 +23,6 @@ composer require serhii/short-number
 | 🇨🇳   | Chinese            | zh   |
 | 🇯🇵   | Japanese           | ja   |
 
-## 📄 License
+## License
 
 The Short Number project is licensed under the [MIT License](https://github.com/short-number/short-number/blob/main/LICENSE.md)
