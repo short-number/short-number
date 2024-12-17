@@ -21,6 +21,7 @@ composer require serhii/short-number
 | 🇷🇺   | Russian            | ru   |
 | 🇺🇦   | Ukrainian          | uk   |
 | 🇨🇳   | Chinese            | zh   |
+| 🇯🇵   | Japanese           | ja   |
 
 ## 📄 License
 
