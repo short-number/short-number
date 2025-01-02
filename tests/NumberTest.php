@@ -21,9 +21,6 @@ final class NumberTest extends TestCase
     public static function provideNumberShort(): array
     {
         return self::withNegativeNumbers([
-            ['5.9m', 5_935_235, new Config(decimals: 1)],
-            ['8.135m', 8_135_235, new Config(decimals: 3)],
-            ['1__10m', 1_105_000, new Config(decimals: 2, decimalsSeparator: '__')],
             ['0', 0],
             ['1', 1],
             ['500', 500],
@@ -44,6 +41,16 @@ final class NumberTest extends TestCase
             ['4q', 4_091_345_678_912_345],
             ['10q', 10_000_000_000_000_000],
             ['999q', 999_999_999_999_999_999],
+
+            // Test with Configurations
+            ['5.9m', 5_935_235, new Config(decimals: 1)],
+            ['8.135m', 8_135_235, new Config(decimals: 3)],
+            ['1__10m', 1_105_000, new Config(decimals: 2, decimalsSeparator: '__')],
+            ['8 m', 8_135_235, new Config(suffixSeparator: ' ')],
+            ['3--b', 3_456_789_012, new Config(suffixSeparator: '--')],
+            ['91T', 91_345_678_912_345, new Config(upperCase: true)],
+            ['999 T', 999_999_999_999_999, new Config(upperCase: true, suffixSeparator: ' ')],
+            ['5,9M', 5_935_235, new Config(decimals: 1, upperCase: true, decimalsSeparator: ',')],
         ]);
     }
 

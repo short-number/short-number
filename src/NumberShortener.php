@@ -45,7 +45,11 @@ final class NumberShortener
 
         $shortNumber = $this->grabFirstDigitsFromNumber($grabDigits, $inputNumber);
 
-        return $shortNumber . $suffix;
+        if ($this->config->upperCase) {
+            $suffix = mb_strtoupper($suffix);
+        }
+
+        return $shortNumber . $this->config->suffixSeparator . $suffix;
     }
 
     private function grabFirstDigitsFromNumber(int $grabDigits, string $inputNumber): string
