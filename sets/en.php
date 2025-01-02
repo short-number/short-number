@@ -1,12 +1,13 @@
 <?php
 
+/**
+ * @see https://short-number.github.io/4.x/contribute.html#contribute-locale
+ */
+
 declare(strict_types=1);
 
 use Serhii\ShortNumber\AbbreviationSet;
 
-/**
- * @see https://short-number.github.io/4.x/contribute.html#contribute-locale
- */
 return new AbbreviationSet(formula: [
     4 => [1, 'k'], 5 => [2, 'k'], 6 => [3, 'k'],
     7 => [1, 'm'], 8 => [2, 'm'], 9 => [3, 'm'],
