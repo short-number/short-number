@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace Serhii\Tests;
 
+use Serhii\ShortNumber\Config;
 use Serhii\ShortNumber\Lang;
+use Serhii\ShortNumber\Number;
 
 class TestCase extends \PHPUnit\Framework\TestCase
 {
@@ -12,6 +14,11 @@ class TestCase extends \PHPUnit\Framework\TestCase
     {
         parent::setUp();
         Lang::resetToDefaults();
+    }
+
+    public function tearDown(): void
+    {
+        Number::configure(new Config());
     }
 
     /**
@@ -27,7 +34,8 @@ class TestCase extends \PHPUnit\Framework\TestCase
                 continue;
             }
 
-            $testCases[] = [sprintf($format, $expect), -$num];
+            $config = $testCase[2] ?? null;
+            $testCases[] = [sprintf($format, $expect), -$num, $config];
         }
 
         return $testCases;

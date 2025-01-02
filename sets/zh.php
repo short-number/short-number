@@ -1,5 +1,9 @@
 <?php
 
+/**
+ * @see https://short-number.github.io/4.x/contribute.html#contribute-locale
+ */
+
 declare(strict_types=1);
 
 use Serhii\ShortNumber\AbbreviationSet;
