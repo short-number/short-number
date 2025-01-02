@@ -1,7 +1,7 @@
 # Release Notes
 
 ## v4.1.0 (2025-01-02)
-- Added ability to configure the output by calling `Number::configure` method with an instance of `Config` class
+- Added ability to configure the output by calling `Number::configure` method with an instance of `Config` class. Follow [docs](https://short-number.github.io/4.x/configurations/output.html) for more information.
 
 ## v4.0.0 (2024-12-17)
 > [Upgrade from 3.x to 4.x Guide](https://short-number.github.io/4.x/upgrade.html)
