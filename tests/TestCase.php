@@ -27,7 +27,8 @@ class TestCase extends \PHPUnit\Framework\TestCase
                 continue;
             }
 
-            $testCases[] = [sprintf($format, $expect), -$num];
+            $config = $testCase[2] ?? null;
+            $testCases[] = [sprintf($format, $expect), -$num, $config];
         }
 
         return $testCases;

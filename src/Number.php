@@ -12,12 +12,14 @@ final class Number
     private static array $cache;
 
     private SetLoader $setLoader;
+    private Config $config;
 
     private static self|null $instance = null;
 
     private function __construct()
     {
         $this->setLoader = new SetLoader();
+        $this->config = new Config();
     }
 
     public static function singleton(): self
@@ -37,6 +39,11 @@ final class Number
         return self::singleton()->process($number);
     }
 
+    public static function configure(Config $config): void
+    {
+        self::singleton()->config = $config;
+    }
+
     private function process(int $number): string
     {
         $lang = Lang::current();
@@ -51,7 +58,7 @@ final class Number
             default => self::$cache[$lang] = $this->setLoader->load($lang),
         };
 
-        $result = (new NumberShortener($number, $set))->shorten();
+        $result = (new NumberShortener($number, $set, $this->config))->shorten();
 
         if ($isNegative) {
             $result = '-' . $result;

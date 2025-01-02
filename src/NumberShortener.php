@@ -13,6 +13,7 @@ final class NumberShortener
     public function __construct(
         private readonly int $number,
         private readonly AbbreviationSet $set,
+        private Config $config,
     ) {
     }
 
@@ -42,9 +43,21 @@ final class NumberShortener
             $suffix = $this->overwritesSuffix($suffix, $overwrites);
         }
 
-        $shortNumber = substr($inputNumber, 0, $grabDigits);
+        $shortNumber = $this->grabFirstDigitsFromNumber($grabDigits, $inputNumber);
 
         return $shortNumber . $suffix;
+    }
+
+    private function grabFirstDigitsFromNumber(int $grabDigits, string $inputNumber): string
+    {
+        $shortNumber = substr($inputNumber, 0, $grabDigits);
+
+        if ($this->config->decimals > 0) {
+            $decimals = substr($inputNumber, $grabDigits, $this->config->decimals);
+            $shortNumber .= $this->config->decimalsSeparator . $decimals;
+        }
+
+        return $shortNumber;
     }
 
     /**
