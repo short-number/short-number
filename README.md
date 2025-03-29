@@ -25,4 +25,4 @@ composer require serhii/short-number
 
 ## License
 
-The Short Number project is licensed under the [MIT License](https://github.com/short-number/short-number/blob/main/LICENSE.md)
+The Short Number project is licensed under the [MIT License](https://github.com/short-number/short-number/blob/master/LICENSE.md)
