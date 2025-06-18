@@ -2,6 +2,7 @@
 
 ## v4.2.0 (2025-06-18)
 - Added Docker to the project
+- Fixed GitHub actions file
 
 ## v4.1.0 (2025-01-02)
 - Added ability to configure the output by calling `Number::configure` method with an instance of `Config` class. Follow [docs](https://short-number.github.io/4.x/configurations/output.html) for more information.
