@@ -26,3 +26,20 @@ composer require serhii/short-number
 ## License
 
 The Short Number project is licensed under the [MIT License](https://github.com/short-number/short-number/blob/master/LICENSE.md)
+
+## Development
+### Without Docker
+You'll need to have Composer and PHP installed on your machine
+
+### With Docker
+#### Build an image
+To build an image, navigate to the root of the project that contains `Dockerfile` and run this command:
+```bash
+docker compose build app
+```
+
+#### Run the container
+To run a container, navigate to the root of the project that contains `Dockerfile` and run this command:
+```bash
+docker compose run --rm app
+```
