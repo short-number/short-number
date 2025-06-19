@@ -1,13 +1,13 @@
 name: serhii-php-short-number
 
 services:
-  app:
-    build:
-      context: .
-    image: serhii-php-short-number
-    volumes:
-      - .:/app
-    environment:
-      - TERM=xterm-256color
-    tty: true
-    stdin_open: true
+    app:
+        build:
+            context: .
+        image: serhii-php-short-number
+        volumes:
+            - .:/app
+        environment:
+            - TERM=xterm-256color
+        tty: true
+        stdin_open: true
