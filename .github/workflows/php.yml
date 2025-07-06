@@ -1,29 +1,28 @@
 name: Short number
 
 on:
-  pull_request:
-    branches:
-      - master
-  push:
-    branches:
-      - master
+    pull_request:
+        branches:
+            - master
+    push:
+        branches:
+            - master
 
 jobs:
-  build:
+    build:
+        runs-on: ubuntu-latest
+        strategy:
+            matrix:
+                php_version: ["8.1", "8.2", "8.3", "8.4"]
 
-    runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        php_version: ['8.1', '8.2', '8.3', '8.4']
+        steps:
+            - uses: actions/checkout@v1
 
-    steps:
-    - uses: actions/checkout@v1
+            - name: Validate composer.json and composer.lock
+              run: composer validate
 
-    - name: Validate composer.json and composer.lock
-      run: composer validate
+            - name: Install dependencies
+              run: composer install --prefer-dist --no-progress --no-suggest
 
-    - name: Install dependencies
-      run: composer install --prefer-dist --no-progress --no-suggest
-
-    - name: Run tests and checks
-      run: composer check
+            - name: Run tests and checks
+              run: composer check
