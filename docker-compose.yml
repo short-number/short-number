@@ -1,10 +1,10 @@
-name: serhii-php-short-number
+name: short-number
 
 services:
     app:
         build:
             context: .
-        image: serhii-php-short-number
+        image: short-number
         volumes:
             - .:/app
         environment:

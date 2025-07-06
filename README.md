@@ -24,22 +24,38 @@ composer require serhii/short-number
 | 🇯🇵   | Japanese           | ja   |
 
 ## License
-
 The Short Number project is licensed under the [MIT License](https://github.com/short-number/short-number/blob/master/LICENSE.md)
 
-## Development
-### Without Docker
-You'll need to have Composer and PHP installed on your machine
+## Contribute
+### With Container Engine
+If you use a container engine like [🦦 Podman](https://podman.io/) or [🐳 Docker](https://app.docker.com/), here are the steps that you can make:
 
-### With Docker
-#### Build an image
-To build an image, navigate to the root of the project that contains `Dockerfile` and run this command:
+#### Build an Image
+To build an image, navigate to the root of the project and run this command for Docker:
 ```bash
 docker compose build app
 ```
+For Podman, run this:
+```bash
+podman-compose build app
+```
 
-#### Run the container
-To run a container, navigate to the root of the project that contains `Dockerfile` and run this command:
+#### Run the Container
+To run a container, navigate to the root of the project and run this command for Docker:
 ```bash
 docker compose run --rm app
+```
+For Podman, run this:
+```bash
+podman-compose run --rm app
+```
+
+#### Cleanup
+You can remove networks and cleanup by running this Docker command:
+```bash
+docker compose down
+```
+For Podman, run this:
+```bash
+podman-compose down
 ```

@@ -1,7 +1,7 @@
 # Release Notes
 
 ## v4.2.0 (2025-06-18)
-- Added Docker to the project
+- Added Container engine support to the project
 - Fixed GitHub actions file
 
 ## v4.1.0 (2025-01-02)
