@@ -4,9 +4,10 @@ services:
     app:
         build:
             context: .
+            dockerfile: Containerfile
         image: short-number
         volumes:
-            - .:/app
+            - .:/app:z
         environment:
             - TERM=xterm-256color
         tty: true
