@@ -28,34 +28,23 @@ The Short Number project is licensed under the [MIT License](https://github.com/
 
 ## Contribute
 ### With Container Engine
-If you use a container engine like [🦦 Podman](https://podman.io/) or [🐳 Docker](https://app.docker.com/), here are the steps that you can make:
+> [!NOTE]
+> If you use [🐳 Docker](https://app.docker.com/) instead of [🦦 Podman](https://podman.io/), just replace `podman-compose` with `docker compose`, and `podman` with `docker` in code examples below.
 
 #### Build an Image
-To build an image, navigate to the root of the project and run this command for Docker:
-```bash
-docker compose build app
-```
-For Podman, run this:
+To build an image, navigate to the root of the project and run this command:
 ```bash
 podman-compose build app
 ```
 
 #### Run the Container
-To run a container, navigate to the root of the project and run this command for Docker:
-```bash
-docker compose run --rm app
-```
-For Podman, run this:
+To run a container, navigate to the root of the project and run this command:
 ```bash
 podman-compose run --rm app
 ```
 
 #### Cleanup
-You can remove networks and cleanup by running this Docker command:
-```bash
-docker compose down
-```
-For Podman, run this:
+You can remove networks and cleanup by running this command:
 ```bash
 podman-compose down
 ```
