@@ -1,5 +1,8 @@
 # Release Notes
 
+## v4.3.0 (2025-11-27)
+- Added support for `PHP 8.5`
+
 ## v4.2.0 (2025-06-18)
 - Added Container engine support to the project
 - Fixed GitHub actions file
