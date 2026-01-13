@@ -2,9 +2,7 @@ name: short-number
 
 services:
     app:
-        build:
-            context: .
-            dockerfile: Containerfile
+        build: .
         image: short-number
         volumes:
             - .:/app:z
