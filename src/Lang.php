@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Serhii\ShortNumber;
 
 /**
- * @see https://github.com/short-number/short-number
+ * @see https://codeberg.org/short-number/short-number
  */
 class Lang
 {
