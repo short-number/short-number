@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @see https://short-number.github.io/4.x/contribute.html#contribute-locale
+ * @see https://short-number.codeberg.page/4.x/contribute.html#contribute-locale
  */
 
 declare(strict_types=1);

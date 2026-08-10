@@ -1,5 +1,8 @@
 # Release Notes
 
+## v4.4.0 (2026-08-10)
+- Moved from GitHub to Codeberg
+
 ## v4.3.0 (2025-11-27)
 - Added support for `PHP 8.5`
 

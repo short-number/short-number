@@ -1,12 +1,11 @@
 # Short Number
 
-[![Short number](https://github.com/short-number/short-number/actions/workflows/php.yml/badge.svg)](https://github.com/short-number/short-number/actions/workflows/php.yml)
 [![Total Downloads](https://poser.pugx.org/serhii/short-number/downloads)](https://packagist.org/packages/serhii/short-number)
-[![License](https://poser.pugx.org/serhii/short-number/license)](https://packagist.org/packages/serhii/short-number)
+[![License](https://poser.pugx.org/serhii/short-number/license)](https://codeberg.org/short-number/short-number/src/branch/master/LICENSE.md)
 
 Lightweight package shortens given number to a short representation of it. For example **1234** will be formatted to **1k** and **20244023** to **20m**. Package supports multiple languages and can be easily extended with new languages.
 
-### Follow the [full documentation](https://short-number.github.io/) for this package
+### Follow the [full documentation](https://short-number.codeberg.page/) for this package
 
 ## Quick Start
 
@@ -26,7 +25,7 @@ composer require serhii/short-number
 
 ## License
 
-The Short Number project is licensed under the [MIT License](https://github.com/short-number/short-number/blob/master/LICENSE.md)
+The Short Number project is licensed under the [MIT License](https://codeberg.org/short-number/short-number/src/branch/master/LICENSE.md)
 
 ## Contribute
 
