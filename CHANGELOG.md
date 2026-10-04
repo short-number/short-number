@@ -1,5 +1,9 @@
 # Release Notes
 
+## v4.4.2 (2026-10-04)
+
+- Version tag fix
+
 ## v4.4.1 (2026-10-04)
 
 - Change docs URL to short-number.serhiicho.com
