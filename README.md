@@ -5,7 +5,7 @@
 
 Lightweight package shortens given number to a short representation of it. For example **1234** will be formatted to **1k** and **20244023** to **20m**. Package supports multiple languages and can be easily extended with new languages.
 
-### Follow the [full documentation](https://short-number.codeberg.page/) for this package
+### Follow the [full documentation](https://short-number.serhiicho.com/) for this package
 
 ## Quick Start
 

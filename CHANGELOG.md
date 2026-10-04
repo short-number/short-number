@@ -1,5 +1,9 @@
 # Release Notes
 
+## v4.4.1 (2026-10-04)
+
+- Change docs URL to short-number.serhiicho.com
+
 ## v4.4.0 (2026-08-10)
 
 - Moved from GitHub to Codeberg
@@ -15,11 +19,11 @@
 
 ## v4.1.0 (2025-01-02)
 
-- Added ability to configure the output by calling `Number::configure` method with an instance of `Config` class. Follow [docs](https://short-number.github.io/4.x/configurations/output.html) for more information.
+- Added ability to configure the output by calling `Number::configure` method with an instance of `Config` class. Follow [docs](https://short-number.serhiicho.com/4.x/configurations/output.html) for more information.
 
 ## v4.0.0 (2024-12-17)
 
-> [Upgrade from 3.x to 4.x Guide](https://short-number.github.io/4.x/upgrade.html)
+> [Upgrade from 3.x to 4.x Guide](https://short-number.serhiicho.com/4.x/upgrade.html)
 
 - Breaking Changes
   - ⚠️ Deleted `Serhii\ShortNumber\Rule` class
