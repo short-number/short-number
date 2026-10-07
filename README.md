@@ -31,66 +31,36 @@ The Short Number project is licensed under the [MIT License](https://codeberg.or
 
 ### With Container Engine
 
+If you use Docker instead of Podman, just replace `podman` keyword with `docker`.
+
 #### Build an Image
 
-To build an image, navigate to the root of the project and run this command.
-
-With Podman:
+To build an image, navigate to the root of the project and run this:
 
 ```bash
 podman-compose build
 ```
 
-With Docker:
-
-```bash
-docker compose build
-```
-
 #### Run the Container
 
-To run a container, navigate to the root of the project and run this command.
-
-With Podman:
+To run a container, navigate to the root of the project and run this:.
 
 ```bash
 podman-compose up -d
 ```
 
-With Docker:
-
-```bash
-docker compose up -d
-```
-
 #### Enter the Container
 
-Enter a container if you need to run composer.
-
-With Podman:
+Enter a container if you need to run composer:
 
 ```bash
 podman-compose exec app bash
 ```
 
-With Docker:
-
-```bash
-docker compose exec app bash
-```
-
 #### Cleanup
 
-You can remove networks and cleanup by running this command.
-
-With Podman:
+You can remove networks and cleanup by running this:
 
 ```bash
 podman-compose down
-```
-
-With Docker:
-
-```bash
-docker compose down
-```
+``` 
