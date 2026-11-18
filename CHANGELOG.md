@@ -1,5 +1,9 @@
 # Release Notes
 
+## v4.4.3 (2026-11-18)
+
+- Moved from Codeberg to GitHub
+
 ## v4.4.2 (2026-10-04)
 
 - Version tag fix

@@ -1,5 +1,4 @@
-name: PHP quality checks
-enable-email-notifications: true
+name: Quality checks
 
 on:
   pull_request:
@@ -9,21 +8,15 @@ on:
 
 jobs:
   run-checks:
-    runs-on: podman
-    container: docker.io/library/node:26
+    runs-on: ubuntu-latest
     name: Run checks for PHP ${{ matrix.php-version }}
     strategy:
       matrix:
         php-version: ["8.1", "8.2", "8.3", "8.4", "8.5"]
 
     steps:
-      - name: Install PHP
-        uses: https://codeberg.org/act/install-php@v1
-        with:
-          php-version: ${{ matrix.php-version }}
-
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: Install composer dependencies
         run: |

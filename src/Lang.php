@@ -4,9 +4,6 @@ declare(strict_types=1);
 
 namespace Serhii\ShortNumber;
 
-/**
- * @see https://codeberg.org/short-number/short-number
- */
 class Lang
 {
     public const DEFAULT_LANG = 'en';

@@ -1,7 +1,7 @@
 {
     "name": "serhii/short-number",
     "description": "For changing the language you want to call `set` method once before calling other methods from this package.",
-    "homepage": "https://codeberg.org/short-number/short-number",
+    "homepage": "https://github.com/short-number/short-number",
     "keywords": ["format number", "shorten number", "library"],
     "type": "library",
     "require": {
