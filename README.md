@@ -69,12 +69,13 @@ composer check
 
 Individual commands:
 
-| Command          | Description                        |
-| ---------------- | ---------------------------------- |
-| `composer test`  | Run PHPUnit tests                  |
-| `composer stan`  | Run PHPStan static analysis        |
-| `composer cs`    | Run PHP CodeSniffer                |
-| `composer pint`  | Check code style with Laravel Pint |
+| Command          | Description                         |
+| ---------------- | ----------------------------------- |
+| `composer test`  | Run PHPUnit tests                   |
+| `composer stan`  | Run PHPStan static analysis         |
+| `composer cs`    | Run PHP CodeSniffer                 |
+| `composer pint`  | Check code style with Laravel Pint  |
+| `composer check` | Runs all the above commands at once |
 
 ## OCI
 
