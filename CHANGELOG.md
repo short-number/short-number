@@ -1,5 +1,9 @@
 # Release Notes
 
+## v4.4.4 (2026-11-21)
+
+- 🐛 Passing an empty array to `Lang::set` as the second arguments clears all custom overrides. Closes [#36](https://github.com/short-number/short-number/issues/36) by [@OpenDeernet](https://github.com/OpenDeernet).
+
 ## v4.4.3 (2026-11-18)
 
 - Moved from Codeberg to GitHub
