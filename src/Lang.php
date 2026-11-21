@@ -28,7 +28,7 @@ class Lang
     {
         self::$lang = $lang;
 
-        if ($overwrites) {
+        if ($overwrites !== null) {
             self::$overwrites[$lang] = $overwrites;
         }
     }

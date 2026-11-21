@@ -52,4 +52,20 @@ final class LangTest extends TestCase
             ['-9', -9923, 'ru', ['ru' => ['тыс' => '']]],
         ];
     }
+
+    public function testEmptyArrayOverwritesReplaceExistingSuffixes(): void
+    {
+        Lang::set('en', overwrites: ['k' => 'thousand']);
+        $this->assertSame('1thousand', Number::short(1000));
+
+        Lang::set('en', overwrites: []);
+        $this->assertSame('1k', Number::short(1000));
+    }
+
+    public function testSetWithoutOverwritesLeavesPreviousOverwrites(): void
+    {
+        Lang::set('en', overwrites: ['k' => 'thousand']);
+        Lang::set('en');
+        $this->assertSame('1thousand', Number::short(1000));
+    }
 }
