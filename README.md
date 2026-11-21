@@ -32,7 +32,7 @@ The Short Number project is licensed under the [MIT License](https://github.com/
 
 ### With Container Engine
 
-If you use Docker instead of Podman, just replace `podman` keyword with `docker`.
+If you use Docker instead of Podman, just replace `podman-compose` keyword with `docker compose`.
 
 #### Build an Image
 
@@ -56,6 +56,12 @@ Enter a container if you need to run composer:
 
 ```bash
 podman-compose exec app bash
+```
+
+Inside the container you can use PHP and Composer like you normally would. For example, to install dependencies, run this:
+
+```bash
+composer install
 ```
 
 #### Cleanup
