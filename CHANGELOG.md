@@ -3,6 +3,7 @@
 ## v4.4.4 (2026-11-21)
 
 - 🐛 Passing an empty array to `Lang::set` as the second arguments clears all custom overrides. Closes [#36](https://github.com/short-number/short-number/issues/36) by [@OpenDeernet](https://github.com/OpenDeernet).
+- 🐛 Corrected wrong suffixes for Russian and Ukrainian languages. Closes [#34](https://github.com/short-number/short-number/issues/34) by [@ElectLive](https://github.com/ElectLive).
 
 ## v4.4.3 (2026-11-18)
 
