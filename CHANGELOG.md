@@ -3,6 +3,7 @@
 ## v4.4.5 (2026-11-27)
 
 - 🐛 Avoided integer overflow when shortening `PHP_INT_MIN`. Closes [#33](https://github.com/short-number/short-number/issues/33).
+- 🐛 Reject unsupported language codes before loading a set, preventing path traversal. Closes [#30](https://github.com/short-number/short-number/issues/30).
 
 ## v4.4.4 (2026-11-21)
 

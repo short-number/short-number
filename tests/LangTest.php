@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Serhii\Tests;
 
+use InvalidArgumentException;
 use PHPUnit\Framework\Attributes\DataProvider;
 use Serhii\ShortNumber\Lang;
 use Serhii\ShortNumber\Number;
@@ -67,5 +68,22 @@ final class LangTest extends TestCase
         Lang::set('en', overwrites: ['k' => 'thousand']);
         Lang::set('en');
         $this->assertSame('1thousand', Number::short(1000));
+    }
+
+    #[DataProvider('providerForUnsupportedLanguagesAreRejected')]
+    public function testUnsupportedLanguagesAreRejected(string $lang): void
+    {
+        Lang::set($lang);
+
+        $this->expectException(InvalidArgumentException::class);
+        Number::short(1000);
+    }
+
+    public static function providerForUnsupportedLanguagesAreRejected(): array
+    {
+        return [
+            ['../sets/zh'],
+            ['zz'],
+        ];
     }
 }
