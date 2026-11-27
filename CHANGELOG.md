@@ -2,6 +2,8 @@
 
 ## v4.4.5 (2026-11-27)
 
+- 🐛 Avoided integer overflow when shortening `PHP_INT_MIN`. Closes [#33](https://github.com/short-number/short-number/issues/33).
+
 ## v4.4.4 (2026-11-21)
 
 - 🐛 Passing an empty array to `Lang::set` as the second arguments clears all custom overrides. Closes [#36](https://github.com/short-number/short-number/issues/36) by [@OpenDeernet](https://github.com/OpenDeernet).

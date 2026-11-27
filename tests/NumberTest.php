@@ -61,4 +61,10 @@ final class NumberTest extends TestCase
         $this->expectException(LargeNumberException::class);
         Number::short(1_000_000_000_000_000_000);
     }
+
+    public function testPHPIntMinThrowsLargeNumberException(): void
+    {
+        $this->expectException(LargeNumberException::class);
+        Number::short(PHP_INT_MIN);
+    }
 }

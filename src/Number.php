@@ -49,16 +49,14 @@ final class Number
         $lang = Lang::current();
         $isNegative = $number < 0;
 
-        if ($isNegative) {
-            $number = (int) abs($number);
-        }
+        $absolute = str_replace('-', '', (string) $number);
 
         $set = match (true) {
             isset(self::$cache[$lang]) => self::$cache[$lang],
             default => self::$cache[$lang] = $this->setLoader->load($lang),
         };
 
-        $result = (new NumberShortener($number, $set, $this->config))->shorten();
+        $result = (new NumberShortener($absolute, $set, $this->config))->shorten();
 
         if ($isNegative) {
             $result = '-' . $result;

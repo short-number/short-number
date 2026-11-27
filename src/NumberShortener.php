@@ -11,7 +11,7 @@ final class NumberShortener
     public const THOUSAND = 1000;
 
     public function __construct(
-        private readonly int $number,
+        private readonly string $number,
         private readonly AbbreviationSet $set,
         private Config $config,
     ) {
@@ -22,12 +22,12 @@ final class NumberShortener
      */
     public function shorten(): string
     {
-        if ($this->number < self::THOUSAND) {
+        $number = $this->number;
+        $digits = strlen($number);
+
+        if ($digits < 4) {
             return (string) $this->number;
         }
-
-        $inputNumber = (string) $this->number;
-        $digits = strlen($inputNumber);
 
         $formulaItem = $this->set->formula[$digits] ?? null;
 
@@ -43,7 +43,7 @@ final class NumberShortener
             $suffix = $this->overwritesSuffix($suffix, $overwrites);
         }
 
-        $shortNumber = $this->grabFirstDigitsFromNumber($grabDigits, $inputNumber);
+        $shortNumber = $this->grabFirstDigitsFromNumber($grabDigits, $number);
 
         if ($this->config->upperCase) {
             $suffix = mb_strtoupper($suffix);
