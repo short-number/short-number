@@ -70,7 +70,7 @@ final class LangTest extends TestCase
         $this->assertSame('1thousand', Number::short(1000));
     }
 
-    #[DataProvider('providerForUnsupportedLanguagesAreRejected')]
+    #[DataProvider('provideUnsupportedLanguages')]
     public function testUnsupportedLanguagesAreRejected(string $lang): void
     {
         Lang::set($lang);
@@ -79,7 +79,7 @@ final class LangTest extends TestCase
         Number::short(1000);
     }
 
-    public static function providerForUnsupportedLanguagesAreRejected(): array
+    public static function provideUnsupportedLanguages(): array
     {
         return [
             ['../sets/zh'],
