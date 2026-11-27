@@ -9,6 +9,7 @@ use Serhii\ShortNumber\Exceptions\LargeNumberException;
 final class NumberShortener
 {
     public const THOUSAND = 1000;
+    private const MIN_DIGITS_TO_SHORTEN = 4;
 
     public function __construct(
         private readonly string $number,
@@ -22,57 +23,44 @@ final class NumberShortener
      */
     public function shorten(): string
     {
-        $number = $this->number;
-        $digits = strlen($number);
+        $digits = strlen($this->number);
 
-        if ($digits < 4) {
-            return (string) $this->number;
+        if ($digits < self::MIN_DIGITS_TO_SHORTEN) {
+            return $this->number;
         }
 
-        $formulaItem = $this->set->formula[$digits] ?? null;
+        [$digitsToKeep, $suffix] = $this->set->formula[$digits]
+            ?? throw new LargeNumberException($this->number);
 
-        if ($formulaItem === null) {
-            throw new LargeNumberException($this->number);
-        }
-
-        [$grabDigits, $suffix] = $formulaItem;
-
-        $overwrites = Lang::getLangOverwrites();
-
-        if (!empty($overwrites)) {
-            $suffix = $this->overwritesSuffix($suffix, $overwrites);
-        }
-
-        $shortNumber = $this->grabFirstDigitsFromNumber($grabDigits, $number);
-
-        if ($this->config->upperCase) {
-            $suffix = mb_strtoupper($suffix);
-        }
-
-        return $shortNumber . $this->config->suffixSeparator . $suffix;
+        return sprintf(
+            '%s%s%s',
+            $this->truncateNumber($digitsToKeep),
+            $this->config->suffixSeparator,
+            $this->formatSuffix($suffix),
+        );
     }
 
-    private function grabFirstDigitsFromNumber(int $grabDigits, string $inputNumber): string
+    private function truncateNumber(int $digitsToKeep): string
     {
-        $shortNumber = substr($inputNumber, 0, $grabDigits);
+        $result = substr($this->number, 0, $digitsToKeep);
 
         if ($this->config->decimals > 0) {
-            $decimals = substr($inputNumber, $grabDigits, $this->config->decimals);
-            $shortNumber .= $this->config->decimalsSeparator . $decimals;
+            $result .= sprintf(
+                '%s%s',
+                $this->config->decimalsSeparator,
+                substr($this->number, $digitsToKeep, $this->config->decimals),
+            );
         }
 
-        return $shortNumber;
+        return $result;
     }
 
-    /**
-     * @param non-empty-array<string,string> $overwrites
-     */
-    private function overwritesSuffix(string $suffix, array $overwrites): string
+    private function formatSuffix(string $suffix): string
     {
-        foreach ($overwrites as $key => $value) {
-            $suffix = str_replace($key, $value, $suffix);
+        foreach (Lang::getLangOverwrites() ?? [] as $search => $replacement) {
+            $suffix = str_replace($search, $replacement, $suffix);
         }
 
-        return $suffix;
+        return $this->config->upperCase ? mb_strtoupper($suffix) : $suffix;
     }
 }
