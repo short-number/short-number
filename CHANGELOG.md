@@ -1,5 +1,9 @@
 # Release Notes
 
+## v4.5.1 (2026-11-28)
+
+- 🔧 Update description in composer.json file.
+
 ## v4.5.0 (2026-11-28)
 
 - ✨ Added `Number::configureOnce()` to lock the configuration for the process lifetime, so long-running workers cannot change it between requests. Changing the language is still allowed. Closes [#37](https://github.com/short-number/short-number/issues/37).

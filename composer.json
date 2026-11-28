@@ -1,6 +1,6 @@
 {
     "name": "serhii/short-number",
-    "description": "For changing the language you want to call `set` method once before calling other methods from this package.",
+    "description": "Lightweight package that shortens given number by taking digits and adding K, M, B or T after them. For example 1234 will be formatted to 1K and 20244023 to 20M. Package supports multiple languages",
     "homepage": "https://github.com/short-number/short-number",
     "keywords": ["format number", "shorten number", "library"],
     "type": "library",
