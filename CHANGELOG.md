@@ -4,8 +4,6 @@
 
 - ✨ Added `Number::configureOnce()` to lock the configuration for the process lifetime, so long-running workers cannot change it between requests. Changing the language is still allowed. Closes [#37](https://github.com/short-number/short-number/issues/37).
 
-## v4.4.6 (2026-11-28)
-
 ## v4.4.5 (2026-11-28)
 
 - 🐛 Aligned Japanese and Chinese compact formatting with CLDR. Closes [#35](https://github.com/short-number/short-number/issues/35).
