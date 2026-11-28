@@ -7,11 +7,22 @@
 declare(strict_types=1);
 
 use Serhii\ShortNumber\AbbreviationSet;
+use Serhii\ShortNumber\FormulaRule;
 
 return new AbbreviationSet(formula: [
-    4 => [1, 'тыс'], 5 => [2, 'тыс'], 6 => [3, 'тыс'],
-    7 => [1, 'млн'], 8 => [2, 'млн'], 9 => [3, 'млн'],
-    10 => [1, 'млрд'], 11 => [2, 'млрд'], 12 => [3, 'млрд'],
-    13 => [1, 'трлн'], 14 => [2, 'трлн'], 15 => [3, 'трлн'],
-    16 => [1, 'квадр'], 17 => [2, 'квадр'], 18 => [3, 'квадр'],
+    new FormulaRule(inputDigits: 4, integerDigits: 1, suffix: 'тыс'),
+    new FormulaRule(inputDigits: 5, integerDigits: 2, suffix: 'тыс'),
+    new FormulaRule(inputDigits: 6, integerDigits: 3, suffix: 'тыс'),
+    new FormulaRule(inputDigits: 7, integerDigits: 1, suffix: 'млн'),
+    new FormulaRule(inputDigits: 8, integerDigits: 2, suffix: 'млн'),
+    new FormulaRule(inputDigits: 9, integerDigits: 3, suffix: 'млн'),
+    new FormulaRule(inputDigits: 10, integerDigits: 1, suffix: 'млрд'),
+    new FormulaRule(inputDigits: 11, integerDigits: 2, suffix: 'млрд'),
+    new FormulaRule(inputDigits: 12, integerDigits: 3, suffix: 'млрд'),
+    new FormulaRule(inputDigits: 13, integerDigits: 1, suffix: 'трлн'),
+    new FormulaRule(inputDigits: 14, integerDigits: 2, suffix: 'трлн'),
+    new FormulaRule(inputDigits: 15, integerDigits: 3, suffix: 'трлн'),
+    new FormulaRule(inputDigits: 16, integerDigits: 1, suffix: 'квадр'),
+    new FormulaRule(inputDigits: 17, integerDigits: 2, suffix: 'квадр'),
+    new FormulaRule(inputDigits: 18, integerDigits: 3, suffix: 'квадр'),
 ]);

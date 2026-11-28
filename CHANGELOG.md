@@ -1,5 +1,12 @@
 # Release Notes
 
+## v4.4.5 (2026-11-28)
+
+- 🐛 Aligned Japanese and Chinese compact formatting with CLDR. Closes [#35](https://github.com/short-number/short-number/issues/35).
+- 🔧 Replaced abbreviation formula tuples with `FormulaRule` objects.
+- 🐛 Avoided integer overflow when shortening `PHP_INT_MIN`. Closes [#33](https://github.com/short-number/short-number/issues/33).
+- 🐛 Reject unsupported language codes before loading a set, preventing path traversal. Closes [#30](https://github.com/short-number/short-number/issues/30).
+
 ## v4.4.4 (2026-11-21)
 
 - 🐛 Passing an empty array to `Lang::set` as the second arguments clears all custom overrides. Closes [#36](https://github.com/short-number/short-number/issues/36) by [@OpenDeernet](https://github.com/OpenDeernet).
@@ -7,32 +14,32 @@
 
 ## v4.4.3 (2026-11-18)
 
-- Moved from Codeberg to GitHub
+- 🔧 Moved from Codeberg to GitHub.
 
 ## v4.4.2 (2026-10-04)
 
-- Version tag fix
+- 🔧 Version tag fix.
 
 ## v4.4.1 (2026-10-04)
 
-- Change docs URL to short-number.serhiicho.com
+- 🔧 Change docs URL to short-number.serhiicho.com.
 
 ## v4.4.0 (2026-08-10)
 
-- Moved from GitHub to Codeberg
+- ✨ Moved from GitHub to Codeberg.
 
 ## v4.3.0 (2025-11-27)
 
-- Added support for `PHP 8.5`
+- ✨ Added support for `PHP 8.5`.
 
 ## v4.2.0 (2025-06-18)
 
-- Added Container engine support to the project
-- Fixed GitHub actions file
+- ✨ Added Container engine support to the project
+- 🔧 Fixed GitHub actions file
 
 ## v4.1.0 (2025-01-02)
 
-- Added ability to configure the output by calling `Number::configure` method with an instance of `Config` class. Follow [docs](https://short-number.serhiicho.com/4.x/configurations/output.html) for more information.
+- ✨ Added ability to configure the output by calling `Number::configure` method with an instance of `Config` class. Follow [docs](https://short-number.serhiicho.com/4.x/configurations/output.html) for more information.
 
 ## v4.0.0 (2024-12-17)
 

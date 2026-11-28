@@ -8,7 +8,7 @@ use Exception;
 
 final class LargeNumberException extends Exception
 {
-    public function __construct(int $number)
+    public function __construct(int|string $number)
     {
         parent::__construct("Number {$number} is too large to process");
     }

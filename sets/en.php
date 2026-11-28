@@ -7,11 +7,22 @@
 declare(strict_types=1);
 
 use Serhii\ShortNumber\AbbreviationSet;
+use Serhii\ShortNumber\FormulaRule;
 
 return new AbbreviationSet(formula: [
-    4 => [1, 'k'], 5 => [2, 'k'], 6 => [3, 'k'],
-    7 => [1, 'm'], 8 => [2, 'm'], 9 => [3, 'm'],
-    10 => [1, 'b'], 11 => [2, 'b'], 12 => [3, 'b'],
-    13 => [1, 't'], 14 => [2, 't'], 15 => [3, 't'],
-    16 => [1, 'q'], 17 => [2, 'q'], 18 => [3, 'q'],
+    new FormulaRule(inputDigits: 4, integerDigits: 1, suffix: 'k'),
+    new FormulaRule(inputDigits: 5, integerDigits: 2, suffix: 'k'),
+    new FormulaRule(inputDigits: 6, integerDigits: 3, suffix: 'k'),
+    new FormulaRule(inputDigits: 7, integerDigits: 1, suffix: 'm'),
+    new FormulaRule(inputDigits: 8, integerDigits: 2, suffix: 'm'),
+    new FormulaRule(inputDigits: 9, integerDigits: 3, suffix: 'm'),
+    new FormulaRule(inputDigits: 10, integerDigits: 1, suffix: 'b'),
+    new FormulaRule(inputDigits: 11, integerDigits: 2, suffix: 'b'),
+    new FormulaRule(inputDigits: 12, integerDigits: 3, suffix: 'b'),
+    new FormulaRule(inputDigits: 13, integerDigits: 1, suffix: 't'),
+    new FormulaRule(inputDigits: 14, integerDigits: 2, suffix: 't'),
+    new FormulaRule(inputDigits: 15, integerDigits: 3, suffix: 't'),
+    new FormulaRule(inputDigits: 16, integerDigits: 1, suffix: 'q'),
+    new FormulaRule(inputDigits: 17, integerDigits: 2, suffix: 'q'),
+    new FormulaRule(inputDigits: 18, integerDigits: 3, suffix: 'q'),
 ]);
