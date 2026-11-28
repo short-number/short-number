@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Serhii\ShortNumber;
 
+use LogicException;
+
 final class Number
 {
     /**
@@ -13,6 +15,7 @@ final class Number
 
     private SetLoader $setLoader;
     private Config $config;
+    private bool $configLocked = false;
 
     private static self|null $instance = null;
 
@@ -39,9 +42,38 @@ final class Number
         return self::singleton()->process($number);
     }
 
+    /**
+     * Sets the configuration. Can be called multiple times until
+     * the configuration is locked with configureOnce().
+     */
     public static function configure(Config $config): void
     {
-        self::singleton()->config = $config;
+        $instance = self::singleton();
+        $instance->assertConfigNotLocked();
+        $instance->config = $config;
+    }
+
+    /**
+     * Sets the configuration and prevents any further changes.
+     * Changing the language with Lang::set() is still allowed.
+     *
+     * @throws LogicException when the configuration is already locked
+     */
+    public static function configureOnce(Config $config): void
+    {
+        $instance = self::singleton();
+        $instance->assertConfigNotLocked();
+        $instance->config = $config;
+        $instance->configLocked = true;
+    }
+
+    private function assertConfigNotLocked(): void
+    {
+        if ($this->configLocked) {
+            throw new LogicException(
+                '[Short Number]: Configuration is already set and cannot be changed.',
+            );
+        }
     }
 
     private function process(int $number): string
