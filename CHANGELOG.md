@@ -2,6 +2,8 @@
 
 ## v4.4.5 (2026-11-27)
 
+- 🐛 Aligned Japanese and Chinese compact formatting with CLDR. Closes [#35](https://github.com/short-number/short-number/issues/35).
+- 🔧 Replaced abbreviation formula tuples with `FormulaRule` objects.
 - 🐛 Avoided integer overflow when shortening `PHP_INT_MIN`. Closes [#33](https://github.com/short-number/short-number/issues/33).
 - 🐛 Reject unsupported language codes before loading a set, preventing path traversal. Closes [#30](https://github.com/short-number/short-number/issues/30).
 

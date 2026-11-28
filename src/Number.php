@@ -62,24 +62,6 @@ final class Number
             $result = '-' . $result;
         }
 
-        if (!empty($set->overwrites)) {
-            $result = $this->applyDefaultOverwrites($result, $set->overwrites);
-        }
-
-        return $result;
-    }
-
-    /**
-     * @param non-empty-array<string,string> $overwrites
-     */
-    private function applyDefaultOverwrites(string $result, array $overwrites): string
-    {
-        foreach ($overwrites as $key => $overwrite) {
-            if ($key === $result) {
-                return $overwrite;
-            }
-        }
-
         return $result;
     }
 }

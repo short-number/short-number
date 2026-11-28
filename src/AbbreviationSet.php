@@ -7,12 +7,9 @@ namespace Serhii\ShortNumber;
 final class AbbreviationSet
 {
     /**
-     * @param array<int,array{int,string}> $formula
-     * @param array<string,string>|null $overwrites
+     * @param list<FormulaRule> $formula
      */
-    public function __construct(
-        public readonly array $formula,
-        public readonly array|null $overwrites = null,
-    ) {
+    public function __construct(public readonly array $formula)
+    {
     }
 }

@@ -8,13 +8,10 @@ use Serhii\ShortNumber\Exceptions\LargeNumberException;
 
 final class NumberShortener
 {
-    public const THOUSAND = 1000;
-    private const MIN_DIGITS_TO_SHORTEN = 4;
-
     public function __construct(
         private readonly string $number,
         private readonly AbbreviationSet $set,
-        private Config $config,
+        private readonly Config $config,
     ) {
     }
 
@@ -23,44 +20,50 @@ final class NumberShortener
      */
     public function shorten(): string
     {
-        $digits = strlen($this->number);
+        $length = strlen($this->number);
 
-        if ($digits < self::MIN_DIGITS_TO_SHORTEN) {
+        if ($this->isBelowShorteningThreshold($length)) {
             return $this->number;
         }
 
-        [$digitsToKeep, $suffix] = $this->set->formula[$digits]
-            ?? throw new LargeNumberException($this->number);
+        $formula = $this->resolveFormula($length);
 
-        return sprintf(
-            '%s%s%s',
-            $this->truncateNumber($digitsToKeep),
-            $this->config->suffixSeparator,
-            $this->formatSuffix($suffix),
+        return $this->compose(
+            $formula->formatNumber($this->number, $this->config),
+            $formula->suffix,
         );
     }
 
-    private function truncateNumber(int $digitsToKeep): string
+    private function isBelowShorteningThreshold(int $length): bool
     {
-        $result = substr($this->number, 0, $digitsToKeep);
+        $firstRule = $this->set->formula[0] ?? null;
 
-        if ($this->config->decimals > 0) {
-            $result .= sprintf(
-                '%s%s',
-                $this->config->decimalsSeparator,
-                substr($this->number, $digitsToKeep, $this->config->decimals),
-            );
-        }
-
-        return $result;
+        return $firstRule instanceof FormulaRule && $length < $firstRule->inputDigits;
     }
 
-    private function formatSuffix(string $suffix): string
+    /** @throws LargeNumberException */
+    private function resolveFormula(int $length): FormulaRule
     {
-        foreach (Lang::getLangOverwrites() ?? [] as $search => $replacement) {
-            $suffix = str_replace($search, $replacement, $suffix);
+        foreach ($this->set->formula as $rule) {
+            if ($rule->inputDigits === $length) {
+                return $rule;
+            }
         }
 
-        return $this->config->upperCase ? mb_strtoupper($suffix) : $suffix;
+        throw new LargeNumberException($this->number);
+    }
+
+    private function compose(string $coefficient, string $suffix): string
+    {
+        return $coefficient . $this->config->suffixSeparator . $this->localize($suffix);
+    }
+
+    private function localize(string $text): string
+    {
+        foreach (Lang::getLangOverwrites() ?? [] as $search => $replacement) {
+            $text = str_replace($search, $replacement, $text);
+        }
+
+        return $this->config->upperCase ? mb_strtoupper($text) : $text;
     }
 }
